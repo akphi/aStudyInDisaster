@@ -1,0 +1,5 @@
+http://web.stanford.edu/class/archive/cs/cs109/cs109.1166/problem12.html
+
+https://www.kaggle.com/c/titanic/data
+
+https://www.kaggle.com/c/titanic/data?email-verification=true&verification-id=1358268
