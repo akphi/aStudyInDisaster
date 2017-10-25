@@ -1,0 +1,68 @@
+---
+title: "Proposal"
+author: "Kaifeng Yang and An Phi"
+output: html_document
+---
+
+#1.Group members: 
+
+An Phi 
+
+Kaifeng Yang
+
+#2.Title: 
+
+Serious: Predicting the survival chance in a shipwreck based on demographic data
+
+Fun: A Study In Disaster
+
+#3.Purpose:  
+We want to study the relationship between a passenger¡¯s background and his/her chance of survival in a shipwreck. This might also (in a fun way) relate to us in the modern context, for example: we can using our own infos to check if we might survive in such a shipwreck as the titanic.  
+
+#4.Data:  
+We will use a data containing the information of all the members on board when Titanic got into the accident. The data is obtained from https://www.kaggle.com/c/titanic/data. It is also available in R with the ¡°titanic¡± Package. This dataset contains 1309 rows, and 11 variables. Each row represents a passenger who was on the Titanic. 
+
+#5. Population:  
+For the data set, each observational unit is a passenger who was on the Titanic. 
+We want to generalize this study to passengers of all ships. Hopefully, they can estimate their odds of survival in case of a shipwreck.
+
+#6. Response Variable:   
+Our response variable is whether or not the person survived, which is represented using 0¡¯s and 1¡¯s, where 0 means that the person did not survive, and 1 means the person did. 
+
+#7. Explanatory Variable: 
+This data involves their basic information, such as their age and gender and information regarding their economic background, as well as their family relations.
+
+
+ # | Name | Type | Definition | Value (range) | Unit | Remark
+ - | --------- | ------- | --------| -------- | ------| ---------------------
+ 1 |survival | nominal | survival | 0=No, 1=Yes 
+ 2 |pclass | ordinal | Ticket class | 1=1st, 2=2nd, 3=3rd |  |We can use this as a proxy for socio-economic status (SES)
+ 3 | sex | nominal | Gender
+ 4 | age | numerical | Age in years | [0,80]
+ 5 | sibsp | numerical | # of siblings* / spouses* aboard the Titanic | [0,8] | person
+ 6 | parch | numerical | # of parents* / children* aboard the Titanic | [0,6] | person
+ 7 | ticket | nominal | Ticket number
+ 8 | fare | numerical | Passenger fare | [0,512.3292] | pound
+ 9 | cabin | nominal | Cabin number
+ 10 | embarked | nominal | Port of embarkation | C = Cherbourg Q = Queenstown S = Southampton
+
+* Sibling = brother, sister, stepbrother, stepsister
+* Spouse = husband, wife (mistresses and fianc¨¦s were ignored)
+* Parent = mother, father
+* Children = son, daughter, stepson and stepdaughter (some children travelled only with a nanny, therefore parch = 0 for them)
+
+#8. References:
+http://www.statisticalconsultants.co.nz/blog/titanic-fare-data.html  
+https://cran.r-project.org/web/packages/titanic/titanic.pdf  
+https://www.kaggle.com/c/titanic/data
+
+
+
+
+
+
+
+
+
+
+
