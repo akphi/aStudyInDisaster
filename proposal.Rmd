@@ -25,14 +25,14 @@ An Phi and Kaifeng Yang
 A Study In Disaster
 
 #3.Purpose:  
-We want to study the relationship between a passenger\'s background and his/her chance of survival in a shipwreck. (One interesting thing to look at is how class and gender may affect the survivor rate.) This might also (in a fun way) relate to us in the modern context, for example: we can use our own infos to check if we might survive in such a shipwreck as the titanic. We can also study if different groups (women, children, wealthy people) might have better chance of surviving or not.
+We want to study the relationship between a passenger\'s background and his/her chance of survival in a shipwreck. One interesting thing to look at is how class and gender may affect the survivor rate. This might also (in a fun way) relate to us in the modern context, for example: we can use our own infos to check if we might survive in such a shipwreck as the titanic. We can also study if different groups (women, children, wealthy people) might have better chance of surviving or not.
 
 #4.Data:  
 We will use a data containing the information of all the members on board when Titanic got into the accident. The data is obtained from https://www.kaggle.com/c/titanic/data. It is also available in R with the __titanic__ package. This dataset contains 1309 rows, and 11 variables. Each row represents a passenger who was on the Titanic. 
 
 #5. Population:  
 For the data set, each observational unit is a passenger who was on the Titanic. 
-We want to generalize this study to passengers of all ships (at the time of 1800s). (To be specific, our population will be wealthy Europeans and Americans as well as the lower class workers on the ship. This is because traveling on Titianic can be regarded as a luxury at that time, so people who can afford to buy a ticket are wealthy people, and other people on Titanic are mainly workers on the ship. Also, since Titianic was going across the Atlantic Ocean, we can only generalize to Europeans and Americans.) Hopefully, through this study, we can estimate their odds of survival in case of a shipwreck.
+We want to generalize this study to passengers of all ships at the time of 1800s. To be specific, our population will be wealthy Europeans and Americans as well as the lower class workers on the ship. This is because traveling on Titianic can be regarded as a luxury at that time, so people who can afford to buy a ticket are wealthy people, and other people on Titanic are mainly workers on the ship. Also, since Titianic was going across the Atlantic Ocean, we can only generalize to Europeans and Americans. Hopefully, through this study, we can estimate their odds of survival in case of a shipwreck.
 
 #6. Variables:
 This data involves Titanic's passengers' basic information, such as their age and gender as well as their economic background, family relations and a boolean indicating if they survive the disaster or not.
@@ -53,7 +53,7 @@ knitr::kable(
 #7. Response Variable:   
 Our response variable will be "survivial", which indicates whether or not the person survived, which is represented using 0's and 1's, where 0 means that the person did not survive, and 1 means the person did. 
 
-Since our response variable is not continuous, we are going to use logistic regression instead of linear regression. By using logistic regression, we will produce the probability of survival given the explanatroy variables. The general form of a logistic regression looks like $ln(\frac{p}{1-p})=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$, where $p$ is the probability of our outcome, and $x_1, x_2, \dots, x_n$ are explanatroy variables. Our $p$ will then be calculated by the formula: $p = \frac{1}{1+e^{-RHS}}$, which is the Sigmoid functionm, which has range of [0, 1] and can be used in replacement of the step function since it gets really steep near 0 (see the diagram below), effectively only allow the possible value of $p$ to be either 1 or 0. Hence, handle the discreet explantory variable "survival" in this case.
+Since our response variable is not continuous, we are going to use logistic regression instead of linear regression. By using logistic regression, we will produce the probability of survival given the explanatroy variables. The general form of a logistic regression looks like $ln(\frac{p}{1-p})=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$, where $p$ is the probability of our outcome, and $x_1, x_2, \dots, x_n$ are explanatroy variables. Our $p$ will then be calculated by the formula: $p = \frac{1}{1+e^{-RHS}}$, which is the Sigmoid function, which has range of [0, 1] and can be used in replacement of the step function since it gets really steep near 0 (see the diagram below), effectively only allow the possible value of $p$ to be either 1 or 0. Hence, it can be used to handle the discreet explantory variable "survival" in this case.
 
 ``` {r, echo = FALSE}
 sigmoid = function(x) {
