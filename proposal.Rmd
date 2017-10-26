@@ -51,7 +51,7 @@ knitr::kable(
 ```
 
 #7. Response Variable:   
-Our response variable will be "survivial", which indicates whether or not the person survived, which is represented using 0's and 1's, where 0 means that the person did not survive, and 1 means the person did. (Since our response variable is not continuous, we are going to use logistic regression instead of linear regression)
+Our response variable will be "survivial", which indicates whether or not the person survived, which is represented using 0's and 1's, where 0 means that the person did not survive, and 1 means the person did. (Since our response variable is not continuous, we are going to use logistic regression instead of linear regression. By using logistic regression, we will produce the probability of survival given the explanatroy variables. The general form of a logistic regression looks like $ln(\frac{p}{1-p}))=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$, where $p$ is the probability of our outcome, and $x_1, x_2, \dots, x_n$ are explanatroy variables.)
 
 #8. Explanatory Variable: 
 Our explanatory variables include passenger class, gender, age, number of sibblings and spouses, number of parents and children, the ticket fare and the port of embarkation. We believe that those variables might play a role in the survival chance of the passenger on the Titanic. Other variables such as passenger name, ticket number are all different and might not be so useful for our study. The cabin number is potentially an important varaible if we can figure out the layout of the cabin on the ship so as to figure out the distance/ time it take to go to the rescue boat point on the ship.
