@@ -25,7 +25,7 @@ An Phi and Kaifeng Yang
 A Study In Disaster
 
 #3.Purpose:  
-We want to study the relationship between a passenger\'s background and his/her chance of survival in a shipwreck. One interesting thing to look at is how class and gender may affect the survivor rate. This might also (in a fun way) relate to us in the modern context, for example: we can use our own infos to check if we might survive in such a shipwreck as the titanic. We can also study how different aspects(gender, age, socio-economic status) of a person might affect their chance of survival.
+We want to study the relationship between a passenger\'s background and his/her chance of survival in a shipwreck. One interesting thing to look at is how class and gender may affect the survivor rate. This might also (in a fun way) relate to us in the modern context, for example: we can use our own info to check if we might survive in such a shipwreck as the titanic. We can also study how different aspects(gender, age, socio-economic status) of a person might affect their chance of survival.
 
 #4.Data:  
 We will use a data containing the information of all the members on board when Titanic got into the accident. The data is obtained from [Kaggle](https://www.kaggle.com/c/titanic/data). It is also available in R with the __titanic__ package. This data set contains 1309 rows, and 11 variables. Each row represents a passenger who was on the Titanic. 
@@ -53,7 +53,7 @@ knitr::kable(
 #7. Response Variable:   
 Our response variable will be "survival", which indicates whether or not the person survived, which is represented using 0's and 1's, where 0 means that the person did not survive, and 1 means the person did. 
 
-Since our response variable is not continuous, we are going to use logistic regression instead of linear regression. By using logistic regression, we will produce the probability of survival given the explanatroy variables. The general form of a logistic regression looks like $ln(\frac{p}{1-p})=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$, where $p$ is the probability of our outcome, and $x_1, x_2, \dots, x_n$ are explanatroy variables. Our $p$ will then be calculated by the formula: $p = \frac{1}{1+e^{-RHS}}$, where $RHS=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$. This is the Sigmoid function, which has range of [0, 1] and can be used in replacement of the step function since it gets really steep near 0 (see the diagram below), effectively only allow the possible value of $p$ to be either 1 or 0. Hence, it can be used to handle the discreet explantory variable "survival" in this case.
+Since our response variable is not continuous, we are going to use logistic regression instead of linear regression. By using logistic regression, we will produce the probability of survival given the explanatory variables. The general form of a logistic regression looks like $ln(\frac{p}{1-p})=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$, where $p$ is the probability of our outcome, and $x_1, x_2, \dots, x_n$ are explanatory variables. Our $p$ will then be calculated by the formula: $p = \frac{1}{1+e^{-RHS}}$, where $RHS=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$. This is the Sigmoid function, which has range of [0, 1] and can be used in replacement of the step function since it gets really steep near 0 (see the diagram below), effectively only allow the possible value of $p$ to be either 1 or 0. Hence, it can be used to handle the discreet explanatory variable "survival" in this case.
 
 ``` {r, echo = FALSE}
 sigmoid = function(x) {
@@ -65,12 +65,22 @@ plot(x, sigmoid(x), col='blue', type = "l")
 
 
 #8. Explanatory Variable: 
-Our explanatory variables include passenger class, gender, age, number of siblings and spouses, number of parents and children, the ticket fare and the port of embarkation. We believe that those variables might play a role in the survival chance of the passenger on the Titanic. Other variables such as passenger name, ticket number are all different and might not be so useful for our study. The cabin number is potentially an important variable if we can figure out the layout of the cabin on the ship so as to figure out the distance/ time it take to go to the rescue boat point on the ship.
+Our explanatory variables include _passenger class, gender, age, number of siblings and spouses, number of parents and children, the ticket fare and the port of embarkation_. We believe that those variables might play a role in the survival chance of the passenger on the Titanic.
+
+Variables such as _passenger name_ and _ticket number_ play the role of row identifiers, which means each passenger has an unique row number and name. As such, these variables are not so useful for our purpose and will not be considered as explanatory variables.
+
+Last but not least, we will consider if we should take _cabin number_ as an explanatory variable. This variable might be very crucial in the sense that if we have a layout of the Titanic and being able to figure out the time each passenger takes to go to the rescue site, this derived data would actually crucial to our study. Unfortunately, this derivation might prove challenging due to the following 2 reasons. First, there was no information from the metadata of the data set about exactly what the cabin number actually means. If the cabin number is the original cabin that the passengers bought ticket for, then this is not so useful since it richer people would be able to get higher cabin and thus closer to the lifeboat (see the diagram from White Star Line). Second, there are a lot of missing data--we only have cabin number of 296 / 1309 passengers. As such, we will not take cabin number as one of our explanatory variable.
+
+
+<center>![](res/titanic_cross_section.png){width=700px}</center>
+
+
 
 #9. References:
 http://www.statisticalconsultants.co.nz/blog/titanic-fare-data.html  
 https://cran.r-project.org/web/packages/titanic/titanic.pdf  
 https://www.kaggle.com/c/titanic/data
+https://www.encyclopedia-titanica.org/titanic-deckplans
 
 
 
