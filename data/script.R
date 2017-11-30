@@ -1,5 +1,5 @@
 library(dplyr)
-DIR <- "<dir>"
+DIR <- "~/Developer/R"
 
 # Import
 titanic <- read.csv(paste(DIR, "aStudyInDisaster/data/titanic3.csv", sep = "/"))
