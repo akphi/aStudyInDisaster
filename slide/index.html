@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="author" content="mauveSushi" />
+  <title>A Study in Disaster</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="index_files/reveal.js-3.3.0.1/css/reveal.css"/>
+
+
+<style type="text/css">
+div.sourceLine, a.sourceLine { display: inline-block; min-height: 1.25em; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; }
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+div.sourceLine, a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource div.sourceLine, .numberSource a.sourceLine
+  { position: relative; }
+pre.numberSource div.sourceLine::before, .numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+pre, code { color: #cccccc; background-color: #303030; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; color: initial; }
+}
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.fl { color: #c0bed1; } /* Float */
+code span.ch { color: #dca3a3; } /* Char */
+code span.st { color: #cc9393; } /* String */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.ot { color: #efef8f; } /* Other */
+code span.al { color: #ffcfaf; } /* Alert */
+code span.fu { color: #efef8f; } /* Function */
+code span.er { color: #c3bf9f; } /* Error */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.im { } /* Import */
+code span.va { } /* Variable */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.op { color: #f0efd0; } /* Operator */
+code span.bu { } /* BuiltIn */
+code span.ex { } /* Extension */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.at { } /* Attribute */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+</style>
+
+<link rel="stylesheet" href="index_files/reveal.js-3.3.0.1/css/theme/solarized.css" id="theme">
+
+
+  <!-- some tweaks to reveal css -->
+  <style type="text/css">
+    .reveal h1 { font-size: 2.0em; }
+    .reveal h2 { font-size: 1.5em;  }
+    .reveal h3 { font-size: 1.25em;	}
+    .reveal h4 { font-size: 1em;	}
+
+    .reveal .slides>section,
+    .reveal .slides>section>section {
+      padding: 0px 0px;
+    }
+
+
+
+    .reveal table {
+      border-width: 1px;
+      border-spacing: 2px;
+      border-style: dotted;
+      border-color: gray;
+      border-collapse: collapse;
+      font-size: 0.7em;
+    }
+
+    .reveal table th {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      font-weight: bold;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+    .reveal table td {
+      border-width: 1px;
+      padding-left: 10px;
+      padding-right: 25px;
+      border-style: dotted;
+      border-color: gray;
+    }
+
+
+  </style>
+
+    <style type="text/css">code{white-space: pre;}</style>
+
+    <link rel="stylesheet" href="styles.css"/>
+
+<!-- Printing and PDF exports -->
+<script id="paper-css" type="application/dynamic-css">
+
+/* Default Print Stylesheet Template
+   by Rob Glazebrook of CSSnewbie.com
+   Last Updated: June 4, 2008
+
+   Feel free (nay, compelled) to edit, append, and
+   manipulate this file as you see fit. */
+
+
+@media print {
+
+	/* SECTION 1: Set default width, margin, float, and
+	   background. This prevents elements from extending
+	   beyond the edge of the printed page, and prevents
+	   unnecessary background images from printing */
+	html {
+		background: #fff;
+		width: auto;
+		height: auto;
+		overflow: visible;
+	}
+	body {
+		background: #fff;
+		font-size: 20pt;
+		width: auto;
+		height: auto;
+		border: 0;
+		margin: 0 5%;
+		padding: 0;
+		overflow: visible;
+		float: none !important;
+	}
+
+	/* SECTION 2: Remove any elements not needed in print.
+	   This would include navigation, ads, sidebars, etc. */
+	.nestedarrow,
+	.controls,
+	.fork-reveal,
+	.share-reveal,
+	.state-background,
+	.reveal .progress,
+	.reveal .backgrounds {
+		display: none !important;
+	}
+
+	/* SECTION 3: Set body font face, size, and color.
+	   Consider using a serif font for readability. */
+	body, p, td, li, div {
+		font-size: 20pt!important;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		color: #000;
+	}
+
+	/* SECTION 4: Set heading font face, sizes, and color.
+	   Differentiate your headings from your body text.
+	   Perhaps use a large sans-serif for distinction. */
+	h1,h2,h3,h4,h5,h6 {
+		color: #000!important;
+		height: auto;
+		line-height: normal;
+		font-family: Georgia, "Times New Roman", Times, serif !important;
+		text-shadow: 0 0 0 #000 !important;
+		text-align: left;
+		letter-spacing: normal;
+	}
+	/* Need to reduce the size of the fonts for printing */
+	h1 { font-size: 28pt !important;  }
+	h2 { font-size: 24pt !important; }
+	h3 { font-size: 22pt !important; }
+	h4 { font-size: 22pt !important; font-variant: small-caps; }
+	h5 { font-size: 21pt !important; }
+	h6 { font-size: 20pt !important; font-style: italic; }
+
+	/* SECTION 5: Make hyperlinks more usable.
+	   Ensure links are underlined, and consider appending
+	   the URL to the end of the link for usability. */
+	a:link,
+	a:visited {
+		color: #000 !important;
+		font-weight: bold;
+		text-decoration: underline;
+	}
+	/*
+	.reveal a:link:after,
+	.reveal a:visited:after {
+		content: " (" attr(href) ") ";
+		color: #222 !important;
+		font-size: 90%;
+	}
+	*/
+
+
+	/* SECTION 6: more reveal.js specific additions by @skypanther */
+	ul, ol, div, p {
+		visibility: visible;
+		position: static;
+		width: auto;
+		height: auto;
+		display: block;
+		overflow: visible;
+		margin: 0;
+		text-align: left !important;
+	}
+	.reveal pre,
+	.reveal table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	.reveal pre code {
+		padding: 20px;
+		border: 1px solid #ddd;
+	}
+	.reveal blockquote {
+		margin: 20px 0;
+	}
+	.reveal .slides {
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 0 !important;
+		zoom: 1 !important;
+
+		overflow: visible !important;
+		display: block !important;
+
+		text-align: left !important;
+		-webkit-perspective: none;
+		   -moz-perspective: none;
+		    -ms-perspective: none;
+		        perspective: none;
+
+		-webkit-perspective-origin: 50% 50%;
+		   -moz-perspective-origin: 50% 50%;
+		    -ms-perspective-origin: 50% 50%;
+		        perspective-origin: 50% 50%;
+	}
+	.reveal .slides section {
+		visibility: visible !important;
+		position: static !important;
+		width: auto !important;
+		height: auto !important;
+		display: block !important;
+		overflow: visible !important;
+
+		left: 0 !important;
+		top: 0 !important;
+		margin-left: 0 !important;
+		margin-top: 0 !important;
+		padding: 60px 20px !important;
+		z-index: auto !important;
+
+		opacity: 1 !important;
+
+		page-break-after: always !important;
+
+		-webkit-transform-style: flat !important;
+		   -moz-transform-style: flat !important;
+		    -ms-transform-style: flat !important;
+		        transform-style: flat !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+
+		-webkit-transition: none !important;
+		   -moz-transition: none !important;
+		    -ms-transition: none !important;
+		        transition: none !important;
+	}
+	.reveal .slides section.stack {
+		padding: 0 !important;
+	}
+	.reveal section:last-of-type {
+		page-break-after: avoid !important;
+	}
+	.reveal section .fragment {
+		opacity: 1 !important;
+		visibility: visible !important;
+
+		-webkit-transform: none !important;
+		   -moz-transform: none !important;
+		    -ms-transform: none !important;
+		        transform: none !important;
+	}
+	.reveal section img {
+		display: block;
+		margin: 15px 0px;
+		background: rgba(255,255,255,1);
+		border: 1px solid #666;
+		box-shadow: none;
+	}
+
+	.reveal section small {
+		font-size: 0.8em;
+	}
+
+}  
+</script>
+
+
+<script id="pdf-css" type="application/dynamic-css">
+    
+/**
+ * This stylesheet is used to print reveal.js
+ * presentations to PDF.
+ *
+ * https://github.com/hakimel/reveal.js#pdf-export
+ */
+
+* {
+	-webkit-print-color-adjust: exact;
+}
+
+body {
+	margin: 0 auto !important;
+	border: 0;
+	padding: 0;
+	float: none !important;
+	overflow: visible;
+}
+
+html {
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+/* Remove any elements not needed in print. */
+.nestedarrow,
+.reveal .controls,
+.reveal .progress,
+.reveal .playback,
+.reveal.overview,
+.fork-reveal,
+.share-reveal,
+.state-background {
+	display: none !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	text-shadow: 0 0 0 #000 !important;
+}
+
+.reveal pre code {
+	overflow: hidden !important;
+	font-family: Courier, 'Courier New', monospace !important;
+}
+
+ul, ol, div, p {
+	visibility: visible;
+	position: static;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: visible;
+	margin: auto;
+}
+.reveal {
+	width: auto !important;
+	height: auto !important;
+	overflow: hidden !important;
+}
+.reveal .slides {
+	position: static;
+	width: 100%;
+	height: auto;
+
+	left: auto;
+	top: auto;
+	margin: 0 !important;
+	padding: 0 !important;
+
+	overflow: visible;
+	display: block;
+
+	-webkit-perspective: none;
+	   -moz-perspective: none;
+	    -ms-perspective: none;
+	        perspective: none;
+
+	-webkit-perspective-origin: 50% 50%; /* there isn't a none/auto value but 50-50 is the default */
+	   -moz-perspective-origin: 50% 50%;
+	    -ms-perspective-origin: 50% 50%;
+	        perspective-origin: 50% 50%;
+}
+
+.reveal .slides section {
+	page-break-after: always !important;
+
+	visibility: visible !important;
+	position: relative !important;
+	display: block !important;
+	position: relative !important;
+
+	margin: 0 !important;
+	padding: 0 !important;
+	box-sizing: border-box !important;
+	min-height: 1px;
+
+	opacity: 1 !important;
+
+	-webkit-transform-style: flat !important;
+	   -moz-transform-style: flat !important;
+	    -ms-transform-style: flat !important;
+	        transform-style: flat !important;
+
+	-webkit-transform: none !important;
+	   -moz-transform: none !important;
+	    -ms-transform: none !important;
+	        transform: none !important;
+}
+
+.reveal section.stack {
+	margin: 0 !important;
+	padding: 0 !important;
+	page-break-after: avoid !important;
+	height: auto !important;
+	min-height: auto !important;
+}
+
+.reveal img {
+	box-shadow: none;
+}
+
+.reveal .roll {
+	overflow: visible;
+	line-height: 1em;
+}
+
+/* Slide backgrounds are placed inside of their slide when exporting to PDF */
+.reveal section .slide-background {
+	display: block !important;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: -1;
+}
+
+/* All elements should be above the slide-background */
+.reveal section>* {
+	position: relative;
+	z-index: 1;
+}
+
+/* Display slide speaker notes when 'showNotes' is enabled */
+.reveal .speaker-notes-pdf {
+	display: block;
+	width: 100%;
+	max-height: none;
+	left: auto;
+	top: auto;
+	z-index: 100;
+}
+
+/* Display slide numbers when 'slideNumber' is enabled */
+.reveal .slide-number-pdf {
+	display: block;
+	position: absolute;
+	font-size: 14px;
+}
+
+</script>
+
+
+<script>
+var style = document.createElement( 'style' );
+style.type = 'text/css';
+var style_script_id = window.location.search.match( /print-pdf/gi ) ? 'pdf-css' : 'paper-css';
+var style_script = document.getElementById(style_script_id).text;
+style.innerHTML = style_script;
+document.getElementsByTagName('head')[0].appendChild(style);
+</script>
+
+    <script src="./index_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+    <script src="./index_files/reveal.js-3.3.0.1/js/reveal.min.js"></script>
+</head>
+<body>
+  <div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1 class="title">A Study in Disaster</h1>
+    <h2 class="author">mauveSushi</h2>
+</section>
+
+<section><section id="introduction" class="title-slide slide level1" data-transition="zoom"><h1>Introduction</h1></section></section>
+<section><section id="the-data" class="title-slide slide level1"><h1>The Data</h1></section><section id="variables" class="slide level2">
+<h2>Variables</h2>
+<p>Show the data, tell what we get rid of (summarize the data, so we use the table in the proposal)</p>
+</section><section id="scatter-plot-matrix" class="slide level2">
+<h2>Scatter Plot Matrix</h2>
+<div class="scatter_plot_matrix">
+
+</div>
+</section><section id="feature-selection" class="slide level2">
+<h2>Feature Selection</h2>
+<h3 id="anoa-title-here">Anoa (TITlE HERE)</h3>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" /></p>
+<h3 id="anoa-title-here-1">Anoa (TITlE HERE)</h3>
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1">p2&lt;-<span class="kw">ggplot</span>(gender<span class="fl">.2</span>, <span class="kw">aes</span>(<span class="dt">x=</span>gender, <span class="dt">y=</span>Freq, <span class="dt">fill=</span>passenger_class))<span class="op">+</span></div>
+<div class="sourceLine" id="cb1-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)<span class="op">+</span></div>
+<div class="sourceLine" id="cb1-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="st">&quot;&quot;</span>)<span class="op">+</span></div>
+<div class="sourceLine" id="cb1-4" data-line-number="4"><span class="st">  </span><span class="co">#ggtitle(&quot;Passenger Class&quot;)+</span></div>
+<div class="sourceLine" id="cb1-5" data-line-number="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="op">+</span></div>
+<div class="sourceLine" id="cb1-6" data-line-number="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Percentage&quot;</span>)</div>
+<div class="sourceLine" id="cb1-7" data-line-number="7">p2</div></code></pre>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-4-1.png" width="768" /></p>
+<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># p3&lt;-ggplot(gender.3, aes(x=gender, y=Freq, fill=number_of_siblings_and_spouses))+</span></div>
+<div class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#   geom_bar(stat = &quot;identity&quot;)+</span></div>
+<div class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#   scale_fill_brewer(&quot;&quot;)+</span></div>
+<div class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#   #ggtitle(&quot;Number of Siblings and Spouses&quot;)+</span></div>
+<div class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#   xlab(&quot;&quot;)+</span></div>
+<div class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#   ylab(&quot;Percentage&quot;)</span></div>
+<div class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># </span></div>
+<div class="sourceLine" id="cb2-8" data-line-number="8"><span class="co"># p4&lt;-ggplot(gender.4, aes(x=gender, y=Freq, fill=embarked_from))+</span></div>
+<div class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#   geom_bar(stat = &quot;identity&quot;)+</span></div>
+<div class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#   scale_fill_brewer(&quot;&quot;, labels=c(&quot;Cherbourg&quot;, &quot;Queenstown&quot;, &quot;Southampton&quot;))+</span></div>
+<div class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#   #ggtitle(&quot;Embarked From&quot;)+</span></div>
+<div class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#   xlab(&quot;&quot;)+</span></div>
+<div class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#   ylab(&quot;Percentage&quot;)</span></div>
+<div class="sourceLine" id="cb2-14" data-line-number="14"><span class="co"># </span></div>
+<div class="sourceLine" id="cb2-15" data-line-number="15"><span class="co"># </span></div>
+<div class="sourceLine" id="cb2-16" data-line-number="16"><span class="co"># grid.arrange(p1,p2,p3,p4)</span></div>
+<div class="sourceLine" id="cb2-17" data-line-number="17"><span class="co"># </span></div>
+<div class="sourceLine" id="cb2-18" data-line-number="18"><span class="co"># </span></div>
+<div class="sourceLine" id="cb2-19" data-line-number="19"><span class="co"># </span></div>
+<div class="sourceLine" id="cb2-20" data-line-number="20"><span class="co"># pclass&lt;-as.data.frame(mosaic::tally(passenger_class~embarked_from, data=titanic, format=&quot;percent&quot;))</span></div>
+<div class="sourceLine" id="cb2-21" data-line-number="21"><span class="co"># </span></div>
+<div class="sourceLine" id="cb2-22" data-line-number="22"><span class="co"># p5&lt;-ggplot(pclass, aes(x=embarked_from, y=Freq, fill=passenger_class))+</span></div>
+<div class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#   geom_bar(stat = &quot;identity&quot;)+</span></div>
+<div class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#   scale_fill_brewer(&quot;&quot;)+</span></div>
+<div class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#   #ggtitle(&quot;Embarked From&quot;)+</span></div>
+<div class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#   xlab(&quot;&quot;)+</span></div>
+<div class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#   ylab(&quot;Percentage&quot;)+</span></div>
+<div class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#   scale_x_discrete(labels=c(&quot;Cherbourg&quot;, &quot;Queenstown&quot;, &quot;Southampton&quot;))</span></div></code></pre>
+</section></section>
+<section><section id="logistic-regression" class="title-slide slide level1"><h1>Logistic Regression</h1></section></section>
+<section><section id="the-model" class="title-slide slide level1"><h1>The Model</h1></section><section id="backward-search" class="slide level2">
+<h2>Backward Search</h2>
+<p>-&gt; Show the best model</p>
+</section><section id="diagnostic" class="slide level2">
+<h2>Diagnostic</h2>
+<p>-&gt; Show the weird residual plot and explain briefly</p>
+</section><section id="best-model" class="slide level2">
+<h2>Best Model</h2>
+<p>-&gt; Show 2 models (with and without gender) -&gt; explain why including gender might be problematic</p>
+</section><section id="evaluation" class="slide level2">
+<h2>Evaluation</h2>
+<ul>
+<li class="fragment">Talk about Homster …</li>
+</ul>
+</section></section>
+<section><section id="interpretation" class="title-slide slide level1"><h1>Interpretation</h1></section><section id="section" class="slide level2">
+<h2></h2>
+<p>Interpretation of the BEST model (age, number of siblings (and spouses) and pclass)</p>
+</section></section>
+<section><section id="prediction" class="title-slide slide level1"><h1>Prediction</h1></section></section>
+    </div>
+  </div>
+
+  <script src="index_files/reveal.js-3.3.0.1/lib/js/head.min.js"></script>
+  <script src="index_files/reveal.js-3.3.0.1/js/reveal.js"></script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        // Display controls in the bottom right corner
+        controls: true,
+        // Display the page number of the current slide
+        slideNumber: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Vertical centering of slides
+        center: true,
+        // Transition style
+        transition: 'fade', // none/fade/slide/convex/concave/zoom
+        // Transition style for full page slide backgrounds
+        backgroundTransition: 'fade', // none/fade/slide/convex/concave/zoom
+
+
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'index_files/reveal.js-3.3.0.1/plugin/zoom-js/zoom.js', async: true },
+        ]
+      });
+    </script>
+  <!-- dynamically load mathjax for compatibility with self-contained -->
+  <script>
+    (function () {
+      var script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+      document.getElementsByTagName("head")[0].appendChild(script);
+    })();
+  </script>
+
+<script>
+  (function() {
+    if (window.jQuery) {
+      Reveal.addEventListener( 'slidechanged', function(event) {  
+        window.jQuery(event.previousSlide).trigger('hidden');
+        window.jQuery(event.currentSlide).trigger('shown');
+      });
+    }
+  })();
+</script>
+
+
+  </body>
+</html>

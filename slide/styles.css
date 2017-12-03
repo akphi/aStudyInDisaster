@@ -1,0 +1,67 @@
+html { 
+    background-color: inherit; 
+  } 
+  iframe {
+    border: 5px solid #2d2d2d !important;   
+  }
+  body {
+    /* background: #AB8FB1 !important; */
+    /* background-color: #AB8FB1 !important; */
+    background: transparent;
+    background-color: dimgray;
+    background-image: url(assets/titanic.jpg);
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+  .reveal section img {
+    border: 5px solid #2d2d2d !important;
+    padding: 10px;
+    background: #FFFFFF !important;
+  }
+  .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+    padding: 0;
+  }
+  .reveal h1 {
+    color: #FFFFFF;
+    background-color: #663248;
+  }
+  .reveal h2 {
+    color: #2d2d2d;
+    background-color: #F8CD2F;
+  }
+  .reveal .controls .navigate-left,
+  .reveal .controls .navigate-left.enabled {
+    border-right-color: #2d2d2d;
+  }
+  .reveal .controls .navigate-left.enabled:hover {
+    border-right-color: #000;
+  }
+  .reveal .controls .navigate-right,
+  .reveal .controls .navigate-right.enabled {
+    border-left-color: #2d2d2d;
+  }
+  .reveal .controls .navigate-right.enabled:hover {
+    border-left-color: #000;
+  }
+  .reveal .controls .navigate-up,
+  .reveal .controls .navigate-up.enabled {
+    border-bottom-color: #2d2d2d;
+  }
+  .reveal .controls .navigate-up.enabled:hover {
+    border-bottom-color: #000;
+  }
+  .reveal .controls .navigate-down,
+  .reveal .controls .navigate-down.enabled {
+    border-top-color: #2d2d2d;
+  }
+  .reveal .controls .navigate-down.enabled:hover {
+    border-top-color: #000;
+  }
+  :focus {
+    outline: none;
+  }
+  .scatter_plot_matrix img {
+    width: 570px;
+  }

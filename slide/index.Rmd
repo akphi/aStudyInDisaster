@@ -1,0 +1,148 @@
+---
+title:  A Study in Disaster 
+author:  mauveSushi
+output: 
+  revealjs::revealjs_presentation:
+    css: styles.css
+    incremental: true
+    includes:
+      in_header: header.html
+    theme: solarized
+    transition: fade
+    background_transition: fade
+    highlight: zenburn
+    self_contained: false
+    reveal_options:
+      slideNumber: false
+      center: true
+      controls: true
+    reveal_plugins: ["zoom"]
+---
+```{r echo = FALSE, include = FALSE}
+#install.packages("revealjs")
+library(tidyverse)
+library(oilabs)
+library(gsheet)
+library(GGally)
+titanic <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Cz3wnwugHApFXO0ogMLtBe5CzD_Uu1q8YBPpZPS2R3U/edit?usp=sharing')
+```
+
+
+
+# Introduction {data-transition="zoom"}
+Use the proposal
+
+
+
+# The Data
+
+## Variables
+Show the data, tell what we get rid of (summarize the data, so we use the table in the proposal)
+
+## Scatter Plot Matrix
+
+<div class="scatter_plot_matrix">
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.width = 14, fig.height=14}
+names<-c("Has survived", "Gender", "Age", "No. of Siblings & Spouses", "No. of Parents & Children", "Passenger Class", "Fare", "Embarked From")
+
+# titanic %>% 
+#   select(-passenger_id) %>% 
+#   ggpairs(lower = list(continuous=wrap("points", position="jitter", size=0.5, alpha=0.8)), columnLabels = names)
+
+```
+
+</div>
+
+## Feature Selection
+
+### Anoa (TITlE HERE)
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, include = TRUE}
+gender.1<-as.data.frame(mosaic::tally(age~gender, data=titanic, format="percent"))
+gender.2<-as.data.frame(mosaic::tally(passenger_class~gender, data=titanic, format="percent"))
+gender.3<-as.data.frame(mosaic::tally(number_of_siblings_and_spouses ~gender, data=titanic, format="percent"))
+gender.4<-as.data.frame(mosaic::tally(embarked_from~gender, data=titanic, format="percent"))
+
+p1<-ggplot(gender.1, aes(x=gender, y=Freq, fill=age))+
+  geom_bar(stat = "identity")+
+  scale_fill_brewer("")+
+  #ggtitle("Age")+
+  xlab("")+
+  ylab("Percentage")
+p1
+```
+
+### Anoa (TITlE HERE)
+```{r}
+p2<-ggplot(gender.2, aes(x=gender, y=Freq, fill=passenger_class))+
+  geom_bar(stat = "identity")+
+  scale_fill_brewer("")+
+  #ggtitle("Passenger Class")+
+  xlab("")+
+  ylab("Percentage")
+p2
+
+# p3<-ggplot(gender.3, aes(x=gender, y=Freq, fill=number_of_siblings_and_spouses))+
+#   geom_bar(stat = "identity")+
+#   scale_fill_brewer("")+
+#   #ggtitle("Number of Siblings and Spouses")+
+#   xlab("")+
+#   ylab("Percentage")
+# 
+# p4<-ggplot(gender.4, aes(x=gender, y=Freq, fill=embarked_from))+
+#   geom_bar(stat = "identity")+
+#   scale_fill_brewer("", labels=c("Cherbourg", "Queenstown", "Southampton"))+
+#   #ggtitle("Embarked From")+
+#   xlab("")+
+#   ylab("Percentage")
+# 
+# 
+# grid.arrange(p1,p2,p3,p4)
+# 
+# 
+# 
+# pclass<-as.data.frame(mosaic::tally(passenger_class~embarked_from, data=titanic, format="percent"))
+# 
+# p5<-ggplot(pclass, aes(x=embarked_from, y=Freq, fill=passenger_class))+
+#   geom_bar(stat = "identity")+
+#   scale_fill_brewer("")+
+#   #ggtitle("Embarked From")+
+#   xlab("")+
+#   ylab("Percentage")+
+#   scale_x_discrete(labels=c("Cherbourg", "Queenstown", "Southampton"))
+
+
+```
+
+
+
+# Logistic Regression 
+Use what we have in the proposal
+
+
+
+# The Model
+## Backward Search
+-> Show the best model
+
+## Diagnostic
+-> Show the weird residual plot and explain briefly
+
+## Best Model
+-> Show 2 models (with and without gender)
+-> explain why including gender might be problematic
+
+## Evaluation
+- Talk about Homster ...
+
+
+
+# Interpretation
+## 
+Interpretation of the BEST model (age, number of siblings (and spouses) and pclass)
+
+
+
+
+# Prediction
+Fun activity (depends)
