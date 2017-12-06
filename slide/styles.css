@@ -1,5 +1,5 @@
 html { 
-    background-color: inherit; 
+   background-color: inherit; 
   } 
   iframe {
     border: 5px solid #2d2d2d !important;   
@@ -19,6 +19,7 @@ html {
     border: 5px solid #2d2d2d !important;
     padding: 10px;
     background: #FFFFFF !important;
+    opacity: 0.9;
   }
   .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
     padding: 0;
@@ -64,4 +65,56 @@ html {
   }
   .scatter_plot_matrix img {
     width: 570px;
+  }
+  .var-table {
+    background: white;
+  }
+  
+  table tr {
+    padding: 10px !important;
+    color: #2d2d2d;
+  }
+  
+  table tr:nth-child(even) {
+    background: #fff;
+    opacity: 0.9;
+  }
+  
+  table tr:nth-child(odd) {
+    background: #f1f1f1;
+    opacity: 0.9;
+  }
+  
+   table th {
+     color: #f1f1f1;
+     background: #663248;
+  }
+  
+  div.content {
+    padding: 20px;
+    background: #f1f1f1;
+    color: #2d2d2d;
+    opacity: 0.9;
+  }
+  
+  div.content.big-code code {
+      max-height: 560px !important;
+  }
+  
+  div.content.medium-code code {
+      max-height: 400px !important;
+  }
+  
+  div.content.small-code code {
+      max-height: 300px !important;
+  }
+  
+  div.content code {
+    padding: 20px;
+  }
+  
+  div.content.small-equation span.math{
+    font-size: 19px;
+  }
+    
   }

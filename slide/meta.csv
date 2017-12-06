@@ -1,0 +1,9 @@
+Name,Type,Unit,Value
+has_survived,nominal,NA,"0 = No, 1 = Yes"
+passenger_class,ordinal,NA,"1 = 1st, 2 = 2nd, 3 = 3rd"
+gender,nominal,NA,"male, female"
+age,numerical,year,"[0,5], [6,18], [19,55], [56 and above], missing"
+number_of_siblings_and_spouses,numerical,person,"[0,8]"
+number_of_parents_and_children,numerical,person,"[0,6]"
+fare,numerical,pound,"[0, 93.5]"
+embarked_from,nominal,NA,"C = Cherbourg, Q = Queenstown, S = Southampton"

@@ -510,78 +510,291 @@ document.getElementsByTagName('head')[0].appendChild(style);
     <h2 class="author">mauveSushi</h2>
 </section>
 
-<section><section id="introduction" class="title-slide slide level1" data-transition="zoom"><h1>Introduction</h1></section></section>
+<section><section id="introduction" class="title-slide slide level1" data-transition="zoom"><h1>Introduction</h1></section><section id="our-purpose" class="slide level2">
+<h2>Our Purpose</h2>
+<div class="content">
+<ul>
+<li class="fragment">What made a survivor?</li>
+<li class="fragment">Can we survive?!</li>
+</ul>
+</div>
+</section><section id="the-dataset" class="slide level2">
+<h2>The Dataset</h2>
+<div class="content">
+<ul>
+<li class="fragment">from Kaggle</li>
+<li class="fragment">1309 rows</li>
+<li class="fragment">11 variables
+<div>
+</li>
+</ul>
+</section></section>
 <section><section id="the-data" class="title-slide slide level1"><h1>The Data</h1></section><section id="variables" class="slide level2">
 <h2>Variables</h2>
-<p>Show the data, tell what we get rid of (summarize the data, so we use the table in the proposal)</p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Unit</th>
+<th style="text-align: left;">Value/Range</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">has_survived</td>
+<td style="text-align: left;">nominal</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">0 = No, 1 = Yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">passenger_class</td>
+<td style="text-align: left;">ordinal</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">1 = 1st, 2 = 2nd, 3 = 3rd</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">gender</td>
+<td style="text-align: left;">nominal</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">male, female</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">age</td>
+<td style="text-align: left;">numerical</td>
+<td style="text-align: left;">year</td>
+<td style="text-align: left;">[0,5], [6,18], [19,55], [56 and above], missing</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">number_of_siblings_and_spouses</td>
+<td style="text-align: left;">numerical</td>
+<td style="text-align: left;">person</td>
+<td style="text-align: left;">[0,8]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">number_of_parents_and_children</td>
+<td style="text-align: left;">numerical</td>
+<td style="text-align: left;">person</td>
+<td style="text-align: left;">[0,6]</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">fare</td>
+<td style="text-align: left;">numerical</td>
+<td style="text-align: left;">pound</td>
+<td style="text-align: left;">[0, 93.5]</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">embarked_from</td>
+<td style="text-align: left;">nominal</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;">C = Cherbourg, Q = Queenstown, S = Southampton</td>
+</tr>
+</tbody>
+</table>
 </section><section id="scatter-plot-matrix" class="slide level2">
 <h2>Scatter Plot Matrix</h2>
 <div class="scatter_plot_matrix">
 
 </div>
-</section><section id="feature-selection" class="slide level2">
-<h2>Feature Selection</h2>
-<h3 id="anoa-title-here">Anoa (TITlE HERE)</h3>
+</section></section>
+<section><section id="logistic-regression" class="title-slide slide level1"><h1>Logistic Regression</h1></section><section id="formula" class="slide level2">
+<h2>Formula</h2>
+<div class="content">
+<p><span class="math display">\[ln(\frac{p}{1-p})=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n = D\]</span> <span class="math display">\[p = \frac{1}{1 + e^{-D}}\]</span></p>
+</div>
+</section><section id="graph" class="slide level2">
+<h2>Graph</h2>
 <p><img src="index_files/figure-revealjs/unnamed-chunk-3-1.png" width="768" /></p>
-<h3 id="anoa-title-here-1">Anoa (TITlE HERE)</h3>
-<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1">p2&lt;-<span class="kw">ggplot</span>(gender<span class="fl">.2</span>, <span class="kw">aes</span>(<span class="dt">x=</span>gender, <span class="dt">y=</span>Freq, <span class="dt">fill=</span>passenger_class))<span class="op">+</span></div>
-<div class="sourceLine" id="cb1-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>)<span class="op">+</span></div>
-<div class="sourceLine" id="cb1-3" data-line-number="3"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="st">&quot;&quot;</span>)<span class="op">+</span></div>
-<div class="sourceLine" id="cb1-4" data-line-number="4"><span class="st">  </span><span class="co">#ggtitle(&quot;Passenger Class&quot;)+</span></div>
-<div class="sourceLine" id="cb1-5" data-line-number="5"><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;&quot;</span>)<span class="op">+</span></div>
-<div class="sourceLine" id="cb1-6" data-line-number="6"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;Percentage&quot;</span>)</div>
-<div class="sourceLine" id="cb1-7" data-line-number="7">p2</div></code></pre>
-<p><img src="index_files/figure-revealjs/unnamed-chunk-4-1.png" width="768" /></p>
-<pre class="sourceCode r" id="cb2"><code class="sourceCode r"><div class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># p3&lt;-ggplot(gender.3, aes(x=gender, y=Freq, fill=number_of_siblings_and_spouses))+</span></div>
-<div class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#   geom_bar(stat = &quot;identity&quot;)+</span></div>
-<div class="sourceLine" id="cb2-3" data-line-number="3"><span class="co">#   scale_fill_brewer(&quot;&quot;)+</span></div>
-<div class="sourceLine" id="cb2-4" data-line-number="4"><span class="co">#   #ggtitle(&quot;Number of Siblings and Spouses&quot;)+</span></div>
-<div class="sourceLine" id="cb2-5" data-line-number="5"><span class="co">#   xlab(&quot;&quot;)+</span></div>
-<div class="sourceLine" id="cb2-6" data-line-number="6"><span class="co">#   ylab(&quot;Percentage&quot;)</span></div>
-<div class="sourceLine" id="cb2-7" data-line-number="7"><span class="co"># </span></div>
-<div class="sourceLine" id="cb2-8" data-line-number="8"><span class="co"># p4&lt;-ggplot(gender.4, aes(x=gender, y=Freq, fill=embarked_from))+</span></div>
-<div class="sourceLine" id="cb2-9" data-line-number="9"><span class="co">#   geom_bar(stat = &quot;identity&quot;)+</span></div>
-<div class="sourceLine" id="cb2-10" data-line-number="10"><span class="co">#   scale_fill_brewer(&quot;&quot;, labels=c(&quot;Cherbourg&quot;, &quot;Queenstown&quot;, &quot;Southampton&quot;))+</span></div>
-<div class="sourceLine" id="cb2-11" data-line-number="11"><span class="co">#   #ggtitle(&quot;Embarked From&quot;)+</span></div>
-<div class="sourceLine" id="cb2-12" data-line-number="12"><span class="co">#   xlab(&quot;&quot;)+</span></div>
-<div class="sourceLine" id="cb2-13" data-line-number="13"><span class="co">#   ylab(&quot;Percentage&quot;)</span></div>
-<div class="sourceLine" id="cb2-14" data-line-number="14"><span class="co"># </span></div>
-<div class="sourceLine" id="cb2-15" data-line-number="15"><span class="co"># </span></div>
-<div class="sourceLine" id="cb2-16" data-line-number="16"><span class="co"># grid.arrange(p1,p2,p3,p4)</span></div>
-<div class="sourceLine" id="cb2-17" data-line-number="17"><span class="co"># </span></div>
-<div class="sourceLine" id="cb2-18" data-line-number="18"><span class="co"># </span></div>
-<div class="sourceLine" id="cb2-19" data-line-number="19"><span class="co"># </span></div>
-<div class="sourceLine" id="cb2-20" data-line-number="20"><span class="co"># pclass&lt;-as.data.frame(mosaic::tally(passenger_class~embarked_from, data=titanic, format=&quot;percent&quot;))</span></div>
-<div class="sourceLine" id="cb2-21" data-line-number="21"><span class="co"># </span></div>
-<div class="sourceLine" id="cb2-22" data-line-number="22"><span class="co"># p5&lt;-ggplot(pclass, aes(x=embarked_from, y=Freq, fill=passenger_class))+</span></div>
-<div class="sourceLine" id="cb2-23" data-line-number="23"><span class="co">#   geom_bar(stat = &quot;identity&quot;)+</span></div>
-<div class="sourceLine" id="cb2-24" data-line-number="24"><span class="co">#   scale_fill_brewer(&quot;&quot;)+</span></div>
-<div class="sourceLine" id="cb2-25" data-line-number="25"><span class="co">#   #ggtitle(&quot;Embarked From&quot;)+</span></div>
-<div class="sourceLine" id="cb2-26" data-line-number="26"><span class="co">#   xlab(&quot;&quot;)+</span></div>
-<div class="sourceLine" id="cb2-27" data-line-number="27"><span class="co">#   ylab(&quot;Percentage&quot;)+</span></div>
-<div class="sourceLine" id="cb2-28" data-line-number="28"><span class="co">#   scale_x_discrete(labels=c(&quot;Cherbourg&quot;, &quot;Queenstown&quot;, &quot;Southampton&quot;))</span></div></code></pre>
+</section><section id="rs-function" class="slide level2">
+<h2>R’s Function</h2>
+<div class="content">
+<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><div class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">glm</span>(formula, <span class="dt">family =</span> <span class="kw">binomial</span>(<span class="dt">link =</span> <span class="st">&quot;logit&quot;</span>)), data, ...<span class="er">)</span></div></code></pre>
+</div>
 </section></section>
-<section><section id="logistic-regression" class="title-slide slide level1"><h1>Logistic Regression</h1></section></section>
-<section><section id="the-model" class="title-slide slide level1"><h1>The Model</h1></section><section id="backward-search" class="slide level2">
-<h2>Backward Search</h2>
-<p>-&gt; Show the best model</p>
-</section><section id="diagnostic" class="slide level2">
-<h2>Diagnostic</h2>
-<p>-&gt; Show the weird residual plot and explain briefly</p>
-</section><section id="best-model" class="slide level2">
-<h2>Best Model</h2>
-<p>-&gt; Show 2 models (with and without gender) -&gt; explain why including gender might be problematic</p>
-</section><section id="evaluation" class="slide level2">
-<h2>Evaluation</h2>
+<section><section id="backward-search" class="title-slide slide level1"><h1>Backward Search</h1></section><section id="the-best-model" class="slide level2">
+<h2>The “Best” Model</h2>
+<div class="content big-code">
+<pre><code>## 
+## Call:
+## glm(formula = has_survived ~ gender + age + number_of_siblings_and_spouses + 
+##     passenger_class + embarked_from, family = binomial(link = &quot;logit&quot;), 
+##     data = titanic)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.7755  -0.6791  -0.4560   0.7074   2.5697  
+## 
+## Coefficients:
+##                                Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                     4.86097    0.47163  10.307  &lt; 2e-16 ***
+## gendermale                     -2.60736    0.15798 -16.505  &lt; 2e-16 ***
+## age[19,55]                     -2.00712    0.38995  -5.147 2.65e-07 ***
+## age[56, above)                 -3.10763    0.53229  -5.838 5.27e-09 ***
+## age[6,18]                      -1.76429    0.43159  -4.088 4.35e-05 ***
+## agemissing                     -2.21886    0.42028  -5.280 1.30e-07 ***
+## number_of_siblings_and_spouses -0.35361    0.09297  -3.803 0.000143 ***
+## passenger_classsecond          -0.91904    0.21489  -4.277 1.90e-05 ***
+## passenger_classthird           -1.77251    0.19438  -9.119  &lt; 2e-16 ***
+## embarked_fromQ                 -0.47350    0.30504  -1.552 0.120601    
+## embarked_fromS                 -0.67719    0.18791  -3.604 0.000314 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1736.2  on 1305  degrees of freedom
+## Residual deviance: 1191.1  on 1295  degrees of freedom
+## AIC: 1213.1
+## 
+## Number of Fisher Scoring iterations: 5</code></pre>
+</div>
+</section><section id="the-regression-line" class="slide level2">
+<h2>The Regression Line</h2>
+<div class="content small-equation">
+<p><span class="math display">\[\hat{\frac{p}{1-\hat{p}}}= 4.86097 \\ - 2.60736 \times gendermale \\ -2.00712 \times age[19,55] \\ -3.10763 \times age[56, above) \\ -1.76429 \times age[6,18] \\ -2.21886\times agemissing \\ -0.35361 \times number\_of\_siblings\_and\_spouses \\ -0.91904\times passenger\_classsecond \\ -1.77251\times passenger\_classthird \\ -0.47350\times embarked\_fromQ  \\ -0.67719\times embarked\_fromS\]</span></p>
+</div>
+</section></section>
+<section><section id="model-evaluation" class="title-slide slide level1"><h1>Model Evaluation</h1></section><section id="the-diagnostics" class="slide level2">
+<h2>The Diagnostics</h2>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-6-1.png" width="768" /></p>
+</section><section id="hosmer-lemeshow-goodness-of-fit-test" class="slide level2">
+<h2>Hosmer-Lemeshow goodness-of-fit test</h2>
+<div class="content">
 <ul>
-<li class="fragment">Talk about Homster …</li>
+<li class="fragment">Treating [0,1] as probability range</li>
+<li class="fragment">Divide into bin(s)</li>
+<li class="fragment">Conduct goodness-of-fit test on each bin</li>
+<li class="fragment">The null hypothesis is: “The observed and the expected proportions are the same for each bin”</li>
 </ul>
+</div>
+</section><section id="the-bins" class="slide level2">
+<h2>The Bin(s)</h2>
+<div class="content big-code">
+<pre><code>##                   y0  y1     yhat0     yhat1
+## [0.00525,0.0987] 175  18 178.83444  14.16556
+## (0.0987,0.0995]  164  30 174.70423  19.29577
+## (0.0995,0.154]    92  15  92.46998  14.53002
+## (0.154,0.248]    140  22 129.56752  32.43248
+## (0.248,0.473]    107  55 102.11090  59.88910
+## (0.473,0.613]     84  77  70.41299  90.58701
+## (0.613,0.818]     38 128  44.82434 121.17566
+## (0.818,0.979]      8 153  15.07560 145.92440</code></pre>
+<pre><code>## 
+##  Hosmer and Lemeshow goodness of fit (GOF) test
+## 
+## data:  titanic$has_survived, fitted(m_best_search)
+## X-squared = 22.308, df = 6, p-value = 0.001065</code></pre>
+</div>
 </section></section>
-<section><section id="interpretation" class="title-slide slide level1"><h1>Interpretation</h1></section><section id="section" class="slide level2">
-<h2></h2>
-<p>Interpretation of the BEST model (age, number of siblings (and spouses) and pclass)</p>
+<section><section id="feature-selection" class="title-slide slide level1"><h1>Feature Selection</h1></section><section id="age-vs.gender" class="slide level2">
+<h2>Age vs. Gender</h2>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-8-1.png" width="768" /></p>
+</section><section id="passenger-class-vs.gender" class="slide level2">
+<h2>Passenger Class vs. Gender</h2>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-9-1.png" width="768" /></p>
+</section><section id="number-of-siblings-and-spouses-vs.gender" class="slide level2">
+<h2>Number of Siblings and Spouses vs. Gender</h2>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-10-1.png" width="768" /></p>
+</section><section id="embarked-from-vs.gender" class="slide level2">
+<h2>Embarked From vs. Gender</h2>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-11-1.png" width="768" /></p>
+</section><section id="passenger-class-vs.embarked-from" class="slide level2">
+<h2>Passenger Class vs. Embarked From</h2>
+<p><img src="index_files/figure-revealjs/unnamed-chunk-12-1.png" width="768" /></p>
 </section></section>
-<section><section id="prediction" class="title-slide slide level1"><h1>Prediction</h1></section></section>
+<section><section id="the-best-models" class="title-slide slide level1"><h1>The <b>Best</b> Models</h1></section><section id="the-sexed-model" class="slide level2">
+<h2>The “Sexed” Model</h2>
+<div class="content small-code">
+<pre><code>## 
+## Call:
+## glm(formula = has_survived ~ gender + number_of_siblings_and_spouses, 
+##     family = binomial(link = &quot;logit&quot;), data = titanic)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.6930  -0.6782  -0.6026   0.7383   2.2295  
+## 
+## Coefficients:
+##                                Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                      1.1606     0.1183   9.812  &lt; 2e-16 ***
+## gendermale                      -2.5131     0.1410 -17.819  &lt; 2e-16 ***
+## number_of_siblings_and_spouses  -0.2615     0.0739  -3.538 0.000403 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1736.2  on 1305  degrees of freedom
+## Residual deviance: 1352.3  on 1303  degrees of freedom
+## AIC: 1358.3
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<pre><code>## 
+##  Hosmer and Lemeshow goodness of fit (GOF) test
+## 
+## data:  titanic$has_survived, fitted(m_best_w_gender)
+## X-squared = 13.886, df = 6, p-value = 0.03094</code></pre>
+</div>
+</section><section id="the-sexed-line" class="slide level2">
+<h2>The “Sexed” Line</h2>
+<div class="content small-equation">
+<p><span class="math display">\[\hat{\frac{p}{1-\hat{p}}} = 1.1606\\ - 2.5131 \times gendermale\\ -0.2615 \times number\_of\_siblings\_and\_spouses\]</span></p>
+</div>
+</section><section id="the-sexless-model" class="slide level2">
+<h2>The “Sexless” Model</h2>
+<div class="content small-code">
+<pre><code>## 
+## Call:
+## glm(formula = has_survived ~ passenger_class + age + number_of_siblings_and_spouses + 
+##     embarked_from, family = binomial(link = &quot;logit&quot;), data = titanic)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -2.0825  -0.9046  -0.6653   1.0446   2.2504  
+## 
+## Coefficients:
+##                                Estimate Std. Error z value Pr(&gt;|z|)    
+## (Intercept)                     2.86333    0.36802   7.780 7.23e-15 ***
+## passenger_classsecond          -0.79637    0.18240  -4.366 1.27e-05 ***
+## passenger_classthird           -1.72612    0.16609 -10.393  &lt; 2e-16 ***
+## age[19,55]                     -1.79335    0.32533  -5.512 3.54e-08 ***
+## age[56, above)                 -2.90927    0.44775  -6.498 8.16e-11 ***
+## age[6,18]                      -1.29812    0.35283  -3.679 0.000234 ***
+## agemissing                     -2.16215    0.35297  -6.126 9.04e-10 ***
+## number_of_siblings_and_spouses -0.13932    0.07493  -1.859 0.062987 .  
+## embarked_fromQ                  0.20219    0.25405   0.796 0.426104    
+## embarked_fromS                 -0.67714    0.15988  -4.235 2.28e-05 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 1736.2  on 1305  degrees of freedom
+## Residual deviance: 1529.0  on 1296  degrees of freedom
+## AIC: 1549
+## 
+## Number of Fisher Scoring iterations: 4</code></pre>
+<pre><code>## 
+##  Hosmer and Lemeshow goodness of fit (GOF) test
+## 
+## data:  titanic$has_survived, fitted(m_best_wo_gender)
+## X-squared = 5.1275, df = 6, p-value = 0.5276</code></pre>
+</div>
+</section><section id="the-sexless-line" class="slide level2">
+<h2>The “Sexless” Line</h2>
+<div class="content small-equation">
+<p><span class="math display">\[\frac{\hat{p}}{1-\hat{p}} = 2.86333\\ 
+-0.79637 \times passenger\_classsecond\\  
+-1.72612 \times passenger\_classthird\\ 
+-1.79335 \times age[19,55]\\ 
+-2.90927 \times age[56, above)\\ 
+-1.29812 \times age[6,18]\\ 
+-2.16215 \times agemissing\\ 
+-0.13932\times number\_of\_siblings\_and\_spouses\\  
++  0.20219\times embarked\_fromQ \\
+-0.67714 \times embarked\_fromS\]</span></p>
+</div>
+</section></section>
     </div>
   </div>
 
