@@ -1,0 +1,11 @@
+Package:  aStudyInDisaster
+Version:  0.0.1
+Date:  2017-12-09
+Depends:  R (>= 3.0.0)
+Imports: bookdown
+Remotes: rstudio/bookdown
+Title: A Study in Disaster
+Author:  An Phi <aphi@skidmore.edu>, Kaifeng Yang <kyang@skidmore.edu>
+Maintainer:  An Phi <aphi@skidmore.edu>, Kaifeng Yang <kyang@skidmore.edu>
+Description:  This project aims to come up with a multiple linear regression model to predict the survival status of passengers on the Titanic.
+URL: https://github.com/blacksteed232/aStudyInDisaster

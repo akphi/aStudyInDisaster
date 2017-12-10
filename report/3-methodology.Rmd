@@ -1,0 +1,7 @@
+# Methodology {#method}
+
+## Backward Selection
+
+## Logistic Regression
+
+## Homser-Lemeshow goodness-of-fit test

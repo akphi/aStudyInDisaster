@@ -1,0 +1,19 @@
+--- 
+title: "A Study in Disaster"
+author: "mauveSushi"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+github-repo: blacksteed232/aStudyInDisaster
+description: "This project aims to come up with a multiple linear regression model to predict the survival status of passengers on the Titanic."
+---
+
+# Introduction {-}
+
+Motivation and Purpose and the data itself ...
+
+
