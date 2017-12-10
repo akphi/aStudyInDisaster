@@ -4,4 +4,16 @@
 
 ## Logistic Regression
 
+In our project, since our response varialbe is binary variable, we are going to use logistic regression for the model. Logistic regression is a type of generalized linear model. Its equation is in the form of $ln(\frac{p}{1-p})=\ln(odds)=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$, where $p$ is the probability of our outcome, and $x_1, x_2, \dots, x_n$ are explanatory variables. The right hand side of this equation is the same as a linear model, so it is called generalized linear model. The left-hand side is the natrual log of odds, where odds is a representation of probability, and it eqauls to $\frac{p}{1-p}$. Once we fit a model, we can predict the probability of success $p$ by $p = \frac{1}{1+e^{-RHS}}$, where $RHS=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$.
+
+To perform logistic regression, we can use `glm` function, which stands for generalized linear model, in R, and call`family = binomial(link = "logit")`.
+
 ## Homser-Lemeshow goodness-of-fit test
+
+Since we used logistic regression in our project, the assumptions we need to verify are not the same as a linear regression model. (For example, we cannot plot a residual plot to see whether the residuals have a pattern because however good or bad a model is, all the residuals will be laid on the curve $\frac{1}{1+e^{-predicted}}$. That is, the residuals will always show a pattern.) To examine how good a logistic regression model is, we can use Homser-Lemeshow goodness-of-fit test. The idea of this test is to divide the sample into several groups according to their predicted values, and compare the expected proportion of success to the observed proportion of success in each group to see whether there is a significant difference between the expected and the observed probability. The null hypothesis of this test is that there is no difference between the expected and the observed probability. In other words, if the p-value of this test is too low, we will have strong evidence that the fit is not good enough.
+
+To perform Homser-Lemeshow goodness-of-fit test, we can use `hoslem.test` function in `ResourceSelection` package in R.
+
+
+
+
