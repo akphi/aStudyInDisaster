@@ -107,4 +107,3 @@ data.frame(as.data.frame.matrix(hl$observed), as.data.frame.matrix(hl$expected))
 ```
 
 As we can see from the summary, all the coefficients are negative, so the reference group is expected to be the luckiest people as is in the previous model. That is, natrual log of odds of little girls (age under 5) in first class without siblings and spouses is expected to be 4.46, which means that their chance of survival is approximately `r 1/(1+exp(-4.46))`. Also, the coefficients suggest how each variable affect the chance of survival. For example, males are expected to have a 2.61 lower natural log of odds than females holding other variables constant. We can also see that one more siblings or spouses is associated with 0.37 decrease natural log of odds.
-
