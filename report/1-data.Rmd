@@ -1,0 +1,20 @@
+# Data Exploration {#data_explore}
+
+```{r echo = FALSE, include = FALSE}
+#install.packages("ResourceSelection")
+library(tidyverse)
+library(oilabs)
+library(gsheet)
+library(GGally)
+library(ResourceSelection)
+titanic <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Cz3wnwugHApFXO0ogMLtBe5CzD_Uu1q8YBPpZPS2R3U/edit?usp=sharing')
+```
+
+## Summary
+The dataset contains 130
+
+## Variable Selection
+
+## Data Preparation
+
+## Correlation Investigation

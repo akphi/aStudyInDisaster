@@ -19,7 +19,7 @@ html {
     border: 5px solid #2d2d2d !important;
     padding: 10px;
     background: #FFFFFF !important;
-    opacity: 0.9;
+    opacity: 0.96;
   }
   .reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
     padding: 0;
@@ -116,5 +116,22 @@ html {
   div.content.small-equation span.math{
     font-size: 19px;
   }
-    
+  
+  div.content.img-ship-cross-section {
+    max-height: 520px;
+    overflow-x: scroll;
+  }
+  
+  div.content.img-ship-sinking img {
+    opacity: 0.96;
+    border: none !important;
+    padding: 0;
+    width: 100%;
+  }
+  
+  div.content.img-ship-sinking {
+    opacity: 0.98;
+    padding: 0;
+    margin: 0;
+    background: none;
   }

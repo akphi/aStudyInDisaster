@@ -11,7 +11,7 @@ titanic$gender <- as.factor(titanic$gender)
 titanic$age <- as.factor(titanic$age)
 titanic$passenger_class <- as.factor(titanic$passenger_class)
 titanic$embarked_from <- as.factor(titanic$embarked_from)
-summary(titanic)
+# summary(titanic)
 # titanic %>% select(-passenger_id) %>% ggpairs()
 
 

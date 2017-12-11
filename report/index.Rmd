@@ -15,5 +15,3 @@ description: "This project aims to come up with a multiple linear regression mod
 # Introduction {-}
 
 Motivation and Purpose and the data itself ...
-
-

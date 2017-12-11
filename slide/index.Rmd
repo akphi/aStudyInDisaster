@@ -46,6 +46,14 @@ titanic <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Cz3wnwugHApFXO0og
 - 11 variables
 <div>
 
+
+## The Ship
+<div class="content img-ship-cross-section">
+![](assets/cross_section.png)
+</div>
+
+
+
 # The Data
 
 ## Variables
@@ -63,15 +71,15 @@ knitr::kable(
   )
 ```
 
-## Scatter Plot Matrix
+## Correlation Investigation
 
 <div class="scatter_plot_matrix">
 ```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.width = 14, fig.height=14}
 names<-c("Has survived", "Gender", "Age", "No. of Siblings & Spouses", "No. of Parents & Children", "Passenger Class", "Fare", "Embarked From")
 
-# titanic %>% 
-#   select(-passenger_id) %>% 
-#   ggpairs(lower = list(continuous=wrap("points", position="jitter", size=0.5, alpha=0.8)), columnLabels = names)
+titanic %>%
+  select(-passenger_id) %>%
+  ggpairs(lower = list(continuous=wrap("points", position="jitter", size=0.5, alpha=0.8)), columnLabels = names)
 
 ```
 </div>
@@ -80,7 +88,7 @@ names<-c("Has survived", "Gender", "Age", "No. of Siblings & Spouses", "No. of P
 
 ##  Formula
 <div class="content">
- $$ln(\frac{p}{1-p})=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n = D$$
+ $$ln(\frac{p}{1-p})= ln(odds) = \alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n = D$$
  $$p = \frac{1}{1 + e^{-D}}$$
 </div>
 
@@ -116,7 +124,7 @@ summary(m_best_search)
 
 ## The Regression Line
 <div class="content small-equation">
-$$\hat{\frac{p}{1-\hat{p}}}= 4.86097 \\ - 2.60736 \times gendermale \\ -2.00712 \times age[19,55] \\ -3.10763 \times age[56, above) \\ -1.76429 \times age[6,18] \\ -2.21886\times agemissing \\ -0.35361 \times number\_of\_siblings\_and\_spouses \\ -0.91904\times passenger\_classsecond \\ -1.77251\times passenger\_classthird \\ -0.47350\times embarked\_fromQ  \\ -0.67719\times embarked\_fromS$$
+$$ln(odds) = 4.86097 \\ - 2.60736 \times gendermale \\ -2.00712 \times age[19,55] \\ -3.10763 \times age[56, above) \\ -1.76429 \times age[6,18] \\ -2.21886\times agemissing \\ -0.35361 \times number\_of\_siblings\_and\_spouses \\ -0.91904\times passenger\_classsecond \\ -1.77251\times passenger\_classthird \\ -0.47350\times embarked\_fromQ  \\ -0.67719\times embarked\_fromS$$
 </div>
 
 
@@ -128,7 +136,7 @@ $$\hat{\frac{p}{1-\hat{p}}}= 4.86097 \\ - 2.60736 \times gendermale \\ -2.00712 
 
 ## The Diagnostics
 ```{r, echo=FALSE} 
-qplot(x = .fitted, y = .resid, data = m_best_search) +
+qplot(x = .fitted, y = residuals(m_best_search, type="response") , data = m_best_search) +
   geom_hline(yintercept = 0, linetype = "dashed") +
   xlab("Fitted values") +
   ylab("Residuals")
@@ -137,10 +145,10 @@ qplot(x = .fitted, y = .resid, data = m_best_search) +
 
 ## Hosmer-Lemeshow goodness-of-fit test
 <div class="content">
-- Treating [0,1] as probability range
-- Divide into bin(s)
+- Treating 0 as failure and 1 as success
+- Divide the probability range [0,1] into bin(s)
 - Conduct goodness-of-fit test on each bin
-- The null hypothesis is: "The observed and the expected proportions are the same for each bin"
+- The null hypothesis is: "The observed and the expected success proportions are the same for each bin"
 </div>
 
 ## The Bin(s)
@@ -230,7 +238,7 @@ p5
 
 
 
-# The <b>Best</b> Models
+# The Best Models
 
 ## The "Sexed" Model
 <div class="content small-code">
@@ -244,7 +252,7 @@ hl_best_w_gender
 
 ## The "Sexed" Line 
 <div class="content small-equation">
-$$\hat{\frac{p}{1-\hat{p}}} = 1.1606\\ - 2.5131 \times gendermale\\ -0.2615 \times number\_of\_siblings\_and\_spouses$$
+$$ln(odds) = 1.1606\\ - 2.5131 \times gendermale\\ -0.2615 \times number\_of\_siblings\_and\_spouses$$
 </div>
 
 ## The "Sexless" Model
@@ -259,7 +267,7 @@ hl_best_wo_gender
 
 ## The "Sexless" Line 
 <div class="content small-equation">
-$$\frac{\hat{p}}{1-\hat{p}} = 2.86333\\ 
+$$ln(odds) = 2.86333\\ 
 -0.79637 \times passenger\_classsecond\\  
 -1.72612 \times passenger\_classthird\\ 
 -1.79335 \times age[19,55]\\ 
@@ -274,3 +282,8 @@ $$\frac{\hat{p}}{1-\hat{p}} = 2.86333\\
 
 
 # Conclusion
+
+## What about us?
+<div class="content img-ship-sinking">
+![](assets/sinking.gif)
+</div>

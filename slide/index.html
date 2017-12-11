@@ -526,8 +526,14 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <li class="fragment">1309 rows</li>
 <li class="fragment">11 variables
 <div>
+
 </li>
 </ul>
+</section><section id="the-ship" class="slide level2">
+<h2>The Ship</h2>
+<div class="content img-ship-cross-section">
+<p><img data-src="assets/cross_section.png" /></p>
+</div>
 </section></section>
 <section><section id="the-data" class="title-slide slide level1"><h1>The Data</h1></section><section id="variables" class="slide level2">
 <h2>Variables</h2>
@@ -561,7 +567,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </tr>
 <tr class="even">
 <td style="text-align: left;">age</td>
-<td style="text-align: left;">numerical</td>
+<td style="text-align: left;">nominal</td>
 <td style="text-align: left;">year</td>
 <td style="text-align: left;">[0,5], [6,18], [19,55], [56 and above], missing</td>
 </tr>
@@ -591,16 +597,16 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </tr>
 </tbody>
 </table>
-</section><section id="scatter-plot-matrix" class="slide level2">
-<h2>Scatter Plot Matrix</h2>
+</section><section id="correlation-investigation" class="slide level2">
+<h2>Correlation Investigation</h2>
 <div class="scatter_plot_matrix">
-
+<p><img src="index_files/figure-revealjs/unnamed-chunk-2-1.png" width="1344" /></p>
 </div>
 </section></section>
 <section><section id="logistic-regression" class="title-slide slide level1"><h1>Logistic Regression</h1></section><section id="formula" class="slide level2">
 <h2>Formula</h2>
 <div class="content">
-<p><span class="math display">\[ln(\frac{p}{1-p})=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n = D\]</span> <span class="math display">\[p = \frac{1}{1 + e^{-D}}\]</span></p>
+<p><span class="math display">\[ln(\frac{p}{1-p})= ln(odds) = \alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n = D\]</span> <span class="math display">\[p = \frac{1}{1 + e^{-D}}\]</span></p>
 </div>
 </section><section id="graph" class="slide level2">
 <h2>Graph</h2>
@@ -651,7 +657,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section><section id="the-regression-line" class="slide level2">
 <h2>The Regression Line</h2>
 <div class="content small-equation">
-<p><span class="math display">\[\hat{\frac{p}{1-\hat{p}}}= 4.86097 \\ - 2.60736 \times gendermale \\ -2.00712 \times age[19,55] \\ -3.10763 \times age[56, above) \\ -1.76429 \times age[6,18] \\ -2.21886\times agemissing \\ -0.35361 \times number\_of\_siblings\_and\_spouses \\ -0.91904\times passenger\_classsecond \\ -1.77251\times passenger\_classthird \\ -0.47350\times embarked\_fromQ  \\ -0.67719\times embarked\_fromS\]</span></p>
+<p><span class="math display">\[ln(odds) = 4.86097 \\ - 2.60736 \times gendermale \\ -2.00712 \times age[19,55] \\ -3.10763 \times age[56, above) \\ -1.76429 \times age[6,18] \\ -2.21886\times agemissing \\ -0.35361 \times number\_of\_siblings\_and\_spouses \\ -0.91904\times passenger\_classsecond \\ -1.77251\times passenger\_classthird \\ -0.47350\times embarked\_fromQ  \\ -0.67719\times embarked\_fromS\]</span></p>
 </div>
 </section></section>
 <section><section id="model-evaluation" class="title-slide slide level1"><h1>Model Evaluation</h1></section><section id="the-diagnostics" class="slide level2">
@@ -661,10 +667,10 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h2>Hosmer-Lemeshow goodness-of-fit test</h2>
 <div class="content">
 <ul>
-<li class="fragment">Treating [0,1] as probability range</li>
-<li class="fragment">Divide into bin(s)</li>
+<li class="fragment">Treating 0 as failure and 1 as success</li>
+<li class="fragment">Divide the probability range [0,1] into bin(s)</li>
 <li class="fragment">Conduct goodness-of-fit test on each bin</li>
-<li class="fragment">The null hypothesis is: “The observed and the expected proportions are the same for each bin”</li>
+<li class="fragment">The null hypothesis is: “The observed and the expected success proportions are the same for each bin”</li>
 </ul>
 </div>
 </section><section id="the-bins" class="slide level2">
@@ -702,7 +708,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 <h2>Passenger Class vs. Embarked From</h2>
 <p><img src="index_files/figure-revealjs/unnamed-chunk-12-1.png" width="768" /></p>
 </section></section>
-<section><section id="the-best-models" class="title-slide slide level1"><h1>The <b>Best</b> Models</h1></section><section id="the-sexed-model" class="slide level2">
+<section><section id="the-best-models" class="title-slide slide level1"><h1>The Best Models</h1></section><section id="the-sexed-model" class="slide level2">
 <h2>The “Sexed” Model</h2>
 <div class="content small-code">
 <pre><code>## 
@@ -738,7 +744,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section><section id="the-sexed-line" class="slide level2">
 <h2>The “Sexed” Line</h2>
 <div class="content small-equation">
-<p><span class="math display">\[\hat{\frac{p}{1-\hat{p}}} = 1.1606\\ - 2.5131 \times gendermale\\ -0.2615 \times number\_of\_siblings\_and\_spouses\]</span></p>
+<p><span class="math display">\[ln(odds) = 1.1606\\ - 2.5131 \times gendermale\\ -0.2615 \times number\_of\_siblings\_and\_spouses\]</span></p>
 </div>
 </section><section id="the-sexless-model" class="slide level2">
 <h2>The “Sexless” Model</h2>
@@ -783,7 +789,7 @@ document.getElementsByTagName('head')[0].appendChild(style);
 </section><section id="the-sexless-line" class="slide level2">
 <h2>The “Sexless” Line</h2>
 <div class="content small-equation">
-<p><span class="math display">\[\frac{\hat{p}}{1-\hat{p}} = 2.86333\\ 
+<p><span class="math display">\[ln(odds) = 2.86333\\ 
 -0.79637 \times passenger\_classsecond\\  
 -1.72612 \times passenger\_classthird\\ 
 -1.79335 \times age[19,55]\\ 
@@ -793,6 +799,12 @@ document.getElementsByTagName('head')[0].appendChild(style);
 -0.13932\times number\_of\_siblings\_and\_spouses\\  
 +  0.20219\times embarked\_fromQ \\
 -0.67714 \times embarked\_fromS\]</span></p>
+</div>
+</section></section>
+<section><section id="conclusion" class="title-slide slide level1"><h1>Conclusion</h1></section><section id="what-about-us" class="slide level2">
+<h2>What about us?</h2>
+<div class="content img-ship-sinking">
+<p><img data-src="assets/sinking.gif" /></p>
 </div>
 </section></section>
     </div>

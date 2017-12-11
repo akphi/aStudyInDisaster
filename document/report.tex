@@ -1,0 +1,231 @@
+% https://github.com/jgm/pandoc-templates/blob/master/default.latex
+% http://rmarkdown.rstudio.com/pdf_document_format.html#custom_templates
+
+\documentclass[12pt, oneside]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage[]{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\PassOptionsToPackage{hyphens}{url} % url is loaded by hyperref
+\usepackage[unicode=true]{hyperref}
+\hypersetup{
+            pdftitle={A Study in Disaster},
+            pdfauthor={mauveSushi},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% CUSTOM
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% margin
+\usepackage[letterpaper, margin=1in]{geometry}
+\usepackage{titlesec}
+% change "Chapter" prefix in a book to "Section"
+
+% hide chapter text
+\renewcommand{\chaptername}{Section}
+\titleformat{\chapter}{\normalfont\huge\bf}{\thechapter.}{20pt}{\huge\bf}
+
+% title page style
+\newcommand*{\titleGM}{\begingroup % Create the command for including the title page in the document
+\hbox{ % Horizontal box
+\hspace*{0.2\textwidth} % Whitespace to the left of the title page
+\rule{1pt}{\textheight} % Vertical line
+\hspace*{0.05\textwidth} % Whitespace between the vertical line and title page text
+\parbox[b]{0.75\textwidth}{ % Paragraph box which restricts text to less than the width of the page
+  {\noindent\Huge\bfseries A Study in Disaster}\\[2\baselineskip] % Title
+  {\large \textit{The Titanic Survivors}}\\[4\baselineskip] % Tagline or further description
+  {\Large \textsc{mauveSushi}} % Author name
+
+  \vspace{0.5\textheight} % Whitespace between the title block and the publisher
+  {\noindent\large Skidmore College}\\[\baselineskip] % Publisher and logo
+  }
+}
+\endgroup}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+
+
+
+\usepackage{natbib}
+\bibliographystyle{apalike}
+\usepackage{longtable,booktabs}
+% Fix footnotes in tables (requires footnote package)
+\IfFileExists{footnote.sty}{\usepackage{footnote}\makesavenoteenv{long table}}{}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+% set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+\usepackage{amsthm}
+\usepackage[dvipsnames,table,xcdraw]{xcolor}
+\usepackage[breakable, theorems, skins]{tcolorbox}
+
+% color palette
+\definecolor{Azure}{rgb}{0.0, 0.5, 1.0}
+
+\makeatletter
+% adjust theorem spacing
+\def\thm@space@setup{%
+  \thm@preskip=8pt plus 2pt minus 4pt
+  \thm@postskip=\thm@preskip
+}
+
+% colorie hyperlink
+\hypersetup{
+    colorlinks=true,
+    citecolor={black},
+    linkcolor={black},
+    menucolor={black},
+    urlcolor={Azure}
+}
+
+% make function greybox
+\DeclareRobustCommand{\greybox}[2][gray!10]{%
+\begin{tcolorbox}[   %% Adjust the following parameters at will.
+        breakable,
+        left=0pt,
+        right=0pt,
+        top=0pt,
+        bottom=0pt,
+        colback=#1,
+        colframe=#1,
+        width=\dimexpr\textwidth\relax, 
+        enlarge left by=0mm,
+        boxsep=5pt,
+        arc=0pt,outer arc=0pt,
+        ]
+        #2
+\end{tcolorbox}
+}
+
+\makeatother
+
+\title{A Study in Disaster}
+\author{mauveSushi}
+\date{2017-12-10}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT BEGIN
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+% replace the default title page by removing \maketitle
+% % \maketitle
+% 
+\pagestyle{empty}  % Removes page numbers need the blank line before of this line
+\titleGM
+
+
+\fontsize{12}{16}\selectfont
+
+\hypertarget{introduction}{%
+\chapter*{Introduction}\label{introduction}}
+\addcontentsline{toc}{chapter}{Introduction}
+
+Motivation and Purpose and the data itself \ldots{}
+
+\hypertarget{data_explore}{%
+\chapter{Data Exploration}\label{data_explore}}
+
+\hypertarget{summary}{%
+\section{Summary}\label{summary}}
+
+The dataset contains 130
+
+\hypertarget{variable-selection}{%
+\section{Variable Selection}\label{variable-selection}}
+
+\hypertarget{data-preparation}{%
+\section{Data Preparation}\label{data-preparation}}
+
+\hypertarget{correlation-investigation}{%
+\section{Correlation Investigation}\label{correlation-investigation}}
+
+\hypertarget{method}{%
+\chapter{Methodology}\label{method}}
+
+\hypertarget{backward-selection}{%
+\section{Backward Selection}\label{backward-selection}}
+
+AN
+
+\hypertarget{logistic-regression}{%
+\section{Logistic Regression}\label{logistic-regression}}
+
+AN
+
+\hypertarget{homser-lemeshow-goodness-of-fit-test}{%
+\section{Homser-Lemeshow goodness-of-fit
+test}\label{homser-lemeshow-goodness-of-fit-test}}
+
+\hypertarget{model}{%
+\chapter{Model}\label{model}}
+
+\hypertarget{model-obtained-using-backward-selection}{%
+\section{Model obtained using backward
+selection}\label{model-obtained-using-backward-selection}}
+
+\hypertarget{the-final-models}{%
+\section{The Final Models}\label{the-final-models}}
+
+\hypertarget{conclusion}{%
+\chapter{Conclusion}\label{conclusion}}
+
+\hypertarget{findings}{%
+\section{Findings}\label{findings}}
+
+\hypertarget{further-study}{%
+\section{Further Study}\label{further-study}}
+
+\bibliography{book.bib,packages.bib}
+
+\end{document}
