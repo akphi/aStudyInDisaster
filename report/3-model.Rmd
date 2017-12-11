@@ -1,5 +1,17 @@
 # Model {#model}
 
+```{r echo = FALSE, include = FALSE}
+#install.packages("revealjs")
+#install.packages("ResourceSelection")
+library(tidyverse)
+library(gridExtra)
+library(oilabs)
+library(gsheet)
+library(GGally)
+library(ResourceSelection)
+titanic <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Cz3wnwugHApFXO0ogMLtBe5CzD_Uu1q8YBPpZPS2R3U/edit?usp=sharing')
+```
+
 ## Model obtained using backward selection
 
 The first model we obtained is by backward selection. We eliminated `number_of_siblings_and_spouses` and `fares` before we obtained a model whose p-value of each variable is smaller than 0.05. The model we obtained and its summary are shown below:
