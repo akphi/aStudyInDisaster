@@ -11,10 +11,70 @@ titanic <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Cz3wnwugHApFXO0og
 ```
 
 ## Summary
-The dataset contains 130
+
+The data set contains information about `r nrow(titanic)` passengers on the Titanic. Recall that there were around 2,200 people on the ship so with this sample size, clearly the data set is a good representation of the population on the Titanic. There are 11 variables in the original data set, listed as follows:
+
+``` {r, include = TRUE, echo = FALSE, results = "asis"}
+general_info <- read.csv("assets/meta_full.csv", stringsAsFactors = FALSE, na.strings = "NA")
+general_info[is.na(general_info)] <- ""
+knitr::kable(
+  general_info,
+  col.names = c("Name", "Type", "Unit", "Meaning", "Value/Range", "Remark"),
+  align = c("l", "l", "l", "l", "l", "l"),
+  digits = 0,
+  booktabs = TRUE
+  #format = "html"
+  )
+```
+
 
 ## Variable Selection
 
+Our response variable is the nominal variable `survival` (or boolean as its outcome is 0 or 1). As for explanatory variables, we have to make some pre-selection beforehand. We decide to take out several variables which we consider only as identifier variables, such as `name` and `ticket` number. Also we did not include the `cabin` number since this information is missing for too many passengers. The only value it brings to the model is when we can actually compute the shortest distance from each cabin to the rescue area. However, again as mentioned, there are a lot of missing data and also, if distance is our only concern, then passenger class is quite sufficient for this purpose (refer to the cross-section plot of the Titanic in previous section).
+
+
 ## Data Preparation
 
+We notice that `age` is missing for many passenger, but `age` is such a crucial variable that we cannot simply take away. As such, we discretize age into several bins: missing, 0-5, 6-18, 19-55, and 56 and above. Also, we rename the variables for readability. So the final model we obtained has the following variables:
+
+``` {r, include = TRUE, echo = FALSE, results = "asis"}
+general_info <- read.csv("assets/meta.csv", stringsAsFactors = FALSE, na.strings = "NA")
+general_info[is.na(general_info)] <- ""
+knitr::kable(
+  general_info,
+  col.names = c("Name", "Type", "Unit", "Value/Range"),
+  align = c("l", "l", "l", "l"),
+  digits = 0,
+  booktabs = TRUE
+  #format = "html"
+  )
+```
+
+
+## Final Data Set Summary
+
+Following is the summary of the final data set:
+```{r, echo=FALSE}
+titanic$has_survived <- as.factor(titanic$has_survived)
+mosaic::tally(~has_survived, data = titanic)
+mosaic::tally(~gender, data = titanic)
+mosaic::tally(~age, data = titanic)
+summary(titanic$number_of_parents_and_children)
+summary(titanic$number_of_siblings_and_spouses)
+mosaic::tally(~passenger_class, data = titanic)
+mosaic::tally(~embarked_from, data = titanic)
+```
+
+
 ## Correlation Investigation
+
+Following, we create a plot matrix to investigate potential colinearity between variables in our data set.
+
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.width = 14, fig.height=14}
+names<-c("Has survived", "Gender", "Age", "No. of Siblings & Spouses", "No. of Parents & Children", "Passenger Class", "Fare", "Embarked From")
+titanic %>%
+  select(-passenger_id) %>%
+  ggpairs(lower = list(continuous=wrap("points", position="jitter", size=0.5, alpha=0.8)), columnLabels = names)
+```
+
+As seen above, it seems that there might be some colinearity between `gender` and `passenger_class` as female and male groups have very different first class to third class ratio. Also, notice that `passenger_class` and `embarked_from` seem to have some strong association, for example, there seems to be more third class passenger embarking from Southampton than that of other embarkation ports. As for now, we will take note of these observations; we will use them later for a more vigorous feature selection process as we attempt to improve our model.

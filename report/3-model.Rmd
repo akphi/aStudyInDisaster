@@ -1,7 +1,6 @@
 # Model {#model}
 
 ```{r echo = FALSE, include = FALSE}
-#install.packages("revealjs")
 #install.packages("ResourceSelection")
 library(tidyverse)
 library(gridExtra)
@@ -20,17 +19,17 @@ m_best <- glm(has_survived ~ gender + age + number_of_siblings_and_spouses + pas
 summary(m_best)
 ```
 
-As can be seen from the summary, each variable has a p-value that is much lower than 0.05 except `emabrked_fromQ`. However, since the p-value of `emabrked_fromS` is low enough, we do not need to eliminate `embarked_from` variable. Also, there is no huge change of coefficients while we eliminate `number_of_siblings_and_spouses` and `fares`, so we do not need to worry about colinearity for these two variables. (Otherwise, we have to study whether the low p-value is caused by colinearity). The formula of this model is $$\hat{\frac{p}{1-\hat{p}}}= 4.86097 - 2.60736 \times gendermale -2.00712 \times age[19,55] -3.10763 \times age[56, above) -1.76429 \times age[6,18] -2.21886\times agemissing\\ -0.35361 \times number\_of\_siblings\_and\_spouses -0.91904\times passenger\_classsecond -1.77251\times passenger\_classthird\\ -0.47350\times embarked\_fromQ -0.67719\times embarked\_fromS$$. Now, we shall evaluate this model using Homser-Lemeshow goodness-of-fit test, and the outcome is as shown below:
-```{r}
+As can be seen from the summary, each variable has a p-value that is much lower than 0.05 except `emabrked_fromQ`. However, since the p-value of `emabrked_fromS` is low enough, we do not need to eliminate `embarked_from` variable. Also, there is no huge change of coefficients while we eliminate `number_of_siblings_and_spouses` and `fares`, so we do not need to worry about collinearity for these two variables. (Otherwise, we have to study whether the low p-value is caused by collinearity). The formula of this model is $$\hat{\frac{p}{1-\hat{p}}}= 4.86097 - 2.60736 \times gendermale -2.00712 \times age[19,55] -3.10763 \times age[56, above) -1.76429 \times age[6,18] -2.21886\times agemissing\\ -0.35361 \times number\_of\_siblings\_and\_spouses -0.91904\times passenger\_classsecond -1.77251\times passenger\_classthird\\ -0.47350\times embarked\_fromQ -0.67719\times embarked\_fromS$$. Now, we shall evaluate this model using Hosmer–Lemeshow goodness-of-fit test, and the outcome is as shown below:
+```{r, echo=FALSE}
 hl <- hoslem.test(titanic$has_survived, fitted(m_best), g=8)
 hl
 ```
 
-The p-value is 0.001065, which is much lower than 0.05, and this suggests that this model is very likely to have a lack of fit. Hence, we need to find a better alternative of this model.
+The p-value is 0.001065, which is much lower than 0.05, and this suggests that this model is very likely to have a lack of fit. Hence, backward selection may not be the best way to fit this model, and we should find a better alternative of this model.
 
 ## The Final Models
 
-To get our final model, we first verified the skeptical correlations we mentioned in the Data Exploration section. First, we are going to check the correlation of gender with other variables, and we can use the plots below to see it:
+To get our final model, we first checked the skeptical correlations we mentioned in the Data Exploration section. First, we are going to check the correlation of gender with other variables, and we can use the plots below to see it:
 
 ```{r, echo=FALSE}
 gender.1<-as.data.frame(mosaic::tally(age~gender, data=titanic, format="percent"))
@@ -70,4 +69,42 @@ p4<-ggplot(gender.4, aes(x=gender, y=Freq, fill=embarked_from))+
 grid.arrange(p1,p2,p3,p4)
 ```
 
-It seems that there is not a significant correlation between age and gender, or gender and embarked from, but there 
+It seems that there is not a significant correlation between `age` and `gender`, or `embarked_from` and `gender`. There is a significant difference in the proportion of each passenger classes in each gender. The number of siblings and spouses also seems to be correlated with gender. Because of this, we considered making two models, one with `gender` and one without `gender`. Also, we looked at the correlation of `embarked_from` and `passenger_class`, and the plot is as shown below:
+```{r, echo=FALSE}
+pclass<-as.data.frame(mosaic::tally(passenger_class~embarked_from, data=titanic, format="percent"))
+
+p5<-ggplot(pclass, aes(x=embarked_from, y=Freq, fill=passenger_class))+
+  geom_bar(stat = "identity")+
+  scale_fill_brewer("")+
+  ggtitle("Embarked From v.s. Passenger Class")+
+  xlab("")+
+  ylab("Percentage")+
+  scale_x_discrete(labels=c("Cherbourg", "Queenstown", "Southampton"))
+p5
+```
+
+As can be seen from this graph, there is a very significant correlation between `passenger_class` and `embarked_from`. For example, more than half of the passengers from Cherbourg are first class passengers, and only a few from Queenstown are first class. This suggests that we should be very careful when include both `passenger_class` and `embarked_from` in the same model. 
+
+Then, we created the following models. The one without `gender` takes `passenger_class`, `age` and `number_of_siblings_and_spouses` into account. We tried several models, and although we will get a better p-value from Hosmer–Lemeshow goodness-of-fit test by adding `embarked_from`, we still think it may be problematic because of its correlation with `passenger_class`. The summary of the model and the result from Hosmer–Lemeshow goodness-of-fit test is as shown:
+```{r, echo=FALSE}
+m_best_8 <- glm(has_survived ~ passenger_class + age + number_of_siblings_and_spouses, data = titanic, family = binomial(link = "logit"))
+summary(m_best_8)
+```
+
+```{r, echo=FALSE}
+hl <- hoslem.test(titanic$has_survived, fitted(m_best_8), g=8)
+hl
+```
+
+As we mentioned before, this p-value is not the best, but this is good enough given that it is larger than 0.05. The negative coefficients of all variables suggest that the reference group is the luckiest group. That is, children (age smaller than 5) in first class without any siblings and spouses are the most likely to survive, and their natural log of odds is 2.43. This means that their chance of survival is approximately `r 1/(1+exp(-2.43))`. This model also suggests the influence of any variable. For example, this model suggests that people in the first class is expected to have a 0.98 higher natural log of odds than people in the second class holding other variables constant. Also, we can expect a decrease of 0.16 in natural log of odds for one more increase in number of siblings and spouses.
+
+This model seems good and it matches with our instinct that children and passengers in the first class will have better chance of survival in a shipwreck. However, since `gender` is such an important variable, we would like to examine a model with `gender` as an explanatory variable. We made a set of models and compared them according to their meanings and their results from Hosmer–Lemeshow goodness-of-fit test. It turns out that all the model with `gender` variable fails the Hosmer–Lemeshow goodness-of-fit test, but arguably, we find the best model which takes `gender`, `age`, `passenger_class`, and `number_of_siblings_and_spouses` because it contains the most information, and the AIC is the lowest among all the models with `gender` variable. The summary of this model is as shown below:
+```{r, echo=FALSE}
+m_best_12 <- glm(has_survived ~ gender + age + number_of_siblings_and_spouses + passenger_class, data = titanic, family = binomial(link = "logit"))
+summary(m_best_12)
+hl <- hoslem.test(titanic$has_survived, fitted(m_best_12), g=8)
+data.frame(as.data.frame.matrix(hl$observed), as.data.frame.matrix(hl$expected))
+```
+
+As we can see from the summary, all the coefficients are negative, so the reference group is expected to be the luckiest people as is in the previous model. That is, natrual log of odds of little girls (age under 5) in first class without siblings and spouses is expected to be 4.46, which means that their chance of survival is approximately `r 1/(1+exp(-4.46))`. Also, the coefficients suggest how each variable affect the chance of survival. For example, males are expected to have a 2.61 lower natural log of odds than females holding other variables constant. We can also see that one more siblings or spouses is associated with 0.37 decrease natural log of odds.
+

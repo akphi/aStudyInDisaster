@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="introduction.html">
+<link rel="prev" href="index.html">
+<link rel="next" href="data-explore.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -103,22 +103,24 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">A Study in Disaster</h1>
-<h4 class="author"><em>mauveSushi</em></h4>
-<h4 class="date"><em>2017-12-11</em></h4>
+<div id="introduction" class="section level1 unnumbered">
+<h1>Introduction</h1>
+<p>On that fateful night April 15, 1912, the great Titanic carrying 2,200 people struck an iceberg and sank, brought down with it 1,500 poor souls. Such tragedy never fails to leave all of us unsettled, but as statisticians, we are naturally drawn to ask ourselves the question: <em>“How do demographic and socioeconomic factors affect chance of survival in disaster?”</em> Perhaps, based on just the titanic data set, such general question cannot be answered, since our findings are probably just generelizable to a specific type of disaster, which is shipwreck and to a time-frame limited to the early 20<sup>th</sup> century. Also, we have to consider the fact that Titanic is not just another ship… It is (even till today) one of the most luxurious ship ever been built (see figure below - the ship even had swimming pool and tennis court at the lowest level!). As such, we think the findings we obtain using this data set can only be generalized to big ship, i.e. ships whose capacity is at least 1000, crossing the Pacific ocean. Note that this number 1000 seems rather arbitrary, but we found that nowadays, on average, cruise ships with tonnage of around 40,000 usually have capacity of 1,000 passengers<a href="conclusion.html#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> and most of the bigger ships in early 20<sup>th</sup> century were around 40,000 or more in tonnage<a href="conclusion.html#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>. For this reason, we formulate our research question as follows:</p>
+<p><strong>“How do various demographic and socioeconomic factors affect chance of survival in shipwreck where the ship’s capacity is at least 1000 passegners and the route is through the Atlantic Ocean in the early 20<sup>th</sup> century?”</strong></p>
+<p>In simpler words, we will attempt to create a model to be able to predict the survival outcome of a passenger, given his/her relevant background information. We constructed several different models with 2 major approaches, one using backward selection and one using a more rigorous feature selection process. Despite this, the models we obtain show a common trend that female, little kids and first-class passengers are more likely to survive the shipwreck. Following this, we will step by step present our data preparation and modelling process, as well as our findings.</p>
+<div class="figure"><span id="fig:crosssection"></span>
+<img src="assets/cross_section.png" alt="Cross Section of the Titanic" />
+<p class="caption">Figure .: Cross Section of the Titanic</p>
 </div>
-<div id="abstract" class="section level1 unnumbered">
-<h1>Abstract</h1>
-<p>This research aims to construct a logistic regression model to predict the survival outcome of passenger on the Titanic based on their various demographic and socioeconomic factors, such as age, gender, number of spouses and siblings, passenger class, etc. The findings of this research can be generalized to most shipwreck where the ship is considered big (having capacity of at least 1000 passengers) and the route is through Atlantic Ocean in the early 20<sup>th</sup> century. We used logistic regression in tandem with backward feature selection to obtain several prediction models. We evaluate each obtained model using the Hosmer-Lemeshow goodness-of-fit test and then conduct a more vigorous feature selection process to come up with the best models. Despite the different approaches, all of the obtained models suggest a common trend that children, woman and first class passengers are among the one with highest chance of survival.</p>
+
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="introduction.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-explore.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -5,7 +5,7 @@ bookdown::pdf_book:
   latex_engine: pdflatex
   citation_package: natbib
   keep_tex: yes
-  # fig_caption: true
+  fig_caption: true
   highlight: zenburn
   toc: no
   template: template.tex
