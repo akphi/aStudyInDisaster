@@ -2,4 +2,60 @@
 
 ## Model obtained using backward selection
 
+The first model we obtained is by backward selection. We eliminated `number_of_siblings_and_spouses` and `fares` before we obtained a model whose p-value of each variable is smaller than 0.05. The model we obtained and its summary are shown below:
+```{r, echo=FALSE}
+m_best <- glm(has_survived ~ gender + age + number_of_siblings_and_spouses + passenger_class + embarked_from, data = titanic, family = binomial(link = "logit"))
+summary(m_best)
+```
+
+As can be seen from the summary, each variable has a p-value that is much lower than 0.05 except `emabrked_fromQ`. However, since the p-value of `emabrked_fromS` is low enough, we do not need to eliminate `embarked_from` variable. Also, there is no huge change of coefficients while we eliminate `number_of_siblings_and_spouses` and `fares`, so we do not need to worry about colinearity for these two variables. (Otherwise, we have to study whether the low p-value is caused by colinearity). The formula of this model is $$\hat{\frac{p}{1-\hat{p}}}= 4.86097 - 2.60736 \times gendermale -2.00712 \times age[19,55] -3.10763 \times age[56, above) -1.76429 \times age[6,18] -2.21886\times agemissing\\ -0.35361 \times number\_of\_siblings\_and\_spouses -0.91904\times passenger\_classsecond -1.77251\times passenger\_classthird\\ -0.47350\times embarked\_fromQ -0.67719\times embarked\_fromS$$. Now, we shall evaluate this model using Homser-Lemeshow goodness-of-fit test, and the outcome is as shown below:
+```{r}
+hl <- hoslem.test(titanic$has_survived, fitted(m_best), g=8)
+hl
+```
+
+The p-value is 0.001065, which is much lower than 0.05, and this suggests that this model is very likely to have a lack of fit. Hence, we need to find a better alternative of this model.
+
 ## The Final Models
+
+To get our final model, we first verified the skeptical correlations we mentioned in the Data Exploration section. First, we are going to check the correlation of gender with other variables, and we can use the plots below to see it:
+
+```{r, echo=FALSE}
+gender.1<-as.data.frame(mosaic::tally(age~gender, data=titanic, format="percent"))
+gender.2<-as.data.frame(mosaic::tally(passenger_class~gender, data=titanic, format="percent"))
+gender.3<-as.data.frame(mosaic::tally(number_of_siblings_and_spouses ~gender, data=titanic, format="percent"))
+gender.4<-as.data.frame(mosaic::tally(embarked_from~gender, data=titanic, format="percent"))
+
+p1<-ggplot(gender.1, aes(x=gender, y=Freq, fill=age))+
+  geom_bar(stat = "identity")+
+  scale_fill_brewer("")+
+  ggtitle("Age")+
+  xlab("")+
+  ylab("Percentage")
+
+p2<-ggplot(gender.2, aes(x=gender, y=Freq, fill=passenger_class))+
+  geom_bar(stat = "identity")+
+  scale_fill_brewer("")+
+  ggtitle("Passenger Class")+
+  xlab("")+
+  ylab("Percentage")
+
+p3<-ggplot(gender.3, aes(x=gender, y=Freq, fill=number_of_siblings_and_spouses))+
+  geom_bar(stat = "identity")+
+  scale_fill_brewer("")+
+  ggtitle("Number of Siblings and Spouses")+
+  xlab("")+
+  ylab("Percentage")
+
+p4<-ggplot(gender.4, aes(x=gender, y=Freq, fill=embarked_from))+
+  geom_bar(stat = "identity")+
+  scale_fill_brewer("", labels=c("Cherbourg", "Queenstown", "Southampton"))+
+  ggtitle("Embarked From")+
+  xlab("")+
+  ylab("Percentage")
+
+
+grid.arrange(p1,p2,p3,p4)
+```
+
+It seems that there is not a significant correlation between age and gender, or gender and embarked from, but there 
