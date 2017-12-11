@@ -70,4 +70,15 @@ p4<-ggplot(gender.4, aes(x=gender, y=Freq, fill=embarked_from))+
 grid.arrange(p1,p2,p3,p4)
 ```
 
-It seems that there is not a significant correlation between age and gender, or gender and embarked from, but there 
+It seems that there is not a significant correlation between `age` and `gender`, or `embarked_from` and `gender`. There is a significant difference in the proportion of each passenger classes in each gender. The number of siblings and spouses also seems to be correlated with gender. Because of this, we considered making two models, one with `gender` and one without `gender`. Also, we looked at the correlation of `embarked_from` and `passenger_class`, and the plot is as shown below:
+```{r}
+pclass<-as.data.frame(mosaic::tally(passenger_class~embarked_from, data=titanic, format="percent"))
+
+p5<-ggplot(pclass, aes(x=embarked_from, y=Freq, fill=passenger_class))+
+  geom_bar(stat = "identity")+
+  scale_fill_brewer("")+
+  #ggtitle("Embarked From")+
+  xlab("")+
+  ylab("Percentage")+
+  scale_x_discrete(labels=c("Cherbourg", "Queenstown", "Southampton"))
+```
