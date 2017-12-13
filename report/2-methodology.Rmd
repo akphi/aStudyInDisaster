@@ -43,6 +43,6 @@ To perform Homser-Lemeshow goodness-of-fit test, we can use `hoslem.test()` func
 
 ## Akaike Information Criterion (AIC)
 
-We will also use Akaike information criterion to evaluate our model. This criterion is a method to compare several regression models together. It is a function of the goodness-of-fit of a model and the number of parameters it takes. It gives reward to better goodness-of-fit and gives penalty to increasing number of explanatory variables The advantage of this criterion is that it will give penalty to over-fitting. However, the limitation of this method is that there is no natural scale to compare with, so it is possible that all of our models have poor fit, and we just choose the relatively best one among these.
+We will also use Akaike information criterion to evaluate our model. This criterion is a method to compare several regression models together. It is a function of the goodness-of-fit of a model and the number of parameters it takes. It gives reward to better goodness-of-fit and gives penalty to increasing number of explanatory variables The advantage of this criterion is that it will give penalty to over-fitting. However, the limitation of this method is that there is no natural scale to compare with, so it is possible that all of our models have poor fit, and we just choose the relatively best one among these. In general, the lower the AIC value, the better the model is.
 
 This is very convenient in R. It is included in the `summary()` function and we can also call it using `AIC()` function.
