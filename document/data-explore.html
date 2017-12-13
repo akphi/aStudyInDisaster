@@ -292,10 +292,20 @@
 <pre><code>## age
 ##       [0,5]     [19,55] [56, above)      [6,18]     missing 
 ##          56         790          57         140         263</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  0.0000  0.0000  0.0000  0.3859  0.0000  9.0000</code></pre>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##     0.0     0.0     0.0     0.5     1.0     8.0</code></pre>
+<pre><code>##  number_of_siblings_and_spouses number_of_parents_and_children
+##  Min.   :0.0                    Min.   :0.0000                
+##  1st Qu.:0.0                    1st Qu.:0.0000                
+##  Median :0.0                    Median :0.0000                
+##  Mean   :0.5                    Mean   :0.3859                
+##  3rd Qu.:1.0                    3rd Qu.:0.0000                
+##  Max.   :8.0                    Max.   :9.0000                
+##       fare       
+##  Min.   :  0.00  
+##  1st Qu.:  7.90  
+##  Median : 14.45  
+##  Mean   : 33.22  
+##  3rd Qu.: 31.27  
+##  Max.   :512.33</code></pre>
 <pre><code>## passenger_class
 ##  first second  third 
 ##    321    277    708</code></pre>
@@ -306,7 +316,7 @@
 <div id="correlation-investigation" class="section level2">
 <h2><span class="header-section-number">1.5</span> Correlation Investigation</h2>
 <p>Following, we create a plot matrix to investigate potential collinearity between variables in our data set.</p>
-<p>As seen above, it seems that there might be some colinearity between <code>gender</code> and <code>passenger_class</code> as female and male groups have very different first class to third class ratio. Also, notice that <code>passenger_class</code> and <code>embarked_from</code> seem to have some strong association, for example, there seems to be more third class passenger embarking from Southampton than that of other embarkation ports. As for now, we will take note of these observations; we will use them later for a more vigorous feature selection process as we attempt to improve our model.</p>
+<p>As seen above, it seems that there might be some collinearity between <code>gender</code> and <code>passenger_class</code> as female and male groups have very different first class to third class ratio. Also, notice that <code>passenger_class</code> and <code>embarked_from</code> seem to have some strong association, for example, there seems to be more third class passenger embarking from Southampton than that of other embarkation ports. As for now, we will take note of these observations; we will use them later for a more vigorous feature selection process as we attempt to improve our model.</p>
 
 </div>
 </div>

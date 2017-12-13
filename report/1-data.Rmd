@@ -59,8 +59,7 @@ titanic$has_survived <- as.factor(titanic$has_survived)
 mosaic::tally(~has_survived, data = titanic)
 mosaic::tally(~gender, data = titanic)
 mosaic::tally(~age, data = titanic)
-summary(titanic$number_of_parents_and_children)
-summary(titanic$number_of_siblings_and_spouses)
+summary(titanic[,c(5,6,8)])
 mosaic::tally(~passenger_class, data = titanic)
 mosaic::tally(~embarked_from, data = titanic)
 ```
@@ -70,11 +69,11 @@ mosaic::tally(~embarked_from, data = titanic)
 
 Following, we create a plot matrix to investigate potential collinearity between variables in our data set.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.width = 14, fig.height=14, eval=FALSE}
+```{r, warning=FALSE, message=FALSE, echo=FALSE, eval=FALSE, fig.width = 14, fig.height=14}
 names<-c("Has survived", "Gender", "Age", "No. of Siblings & Spouses", "No. of Parents & Children", "Passenger Class", "Fare", "Embarked From")
 titanic %>%
   select(-passenger_id) %>%
   ggpairs(lower = list(continuous=wrap("points", position="jitter", size=0.5, alpha=0.8)), columnLabels = names)
 ```
 
-As seen above, it seems that there might be some colinearity between `gender` and `passenger_class` as female and male groups have very different first class to third class ratio. Also, notice that `passenger_class` and `embarked_from` seem to have some strong association, for example, there seems to be more third class passenger embarking from Southampton than that of other embarkation ports. As for now, we will take note of these observations; we will use them later for a more vigorous feature selection process as we attempt to improve our model.
+As seen above, it seems that there might be some collinearity between `gender` and `passenger_class` as female and male groups have very different first class to third class ratio. Also, notice that `passenger_class` and `embarked_from` seem to have some strong association, for example, there seems to be more third class passenger embarking from Southampton than that of other embarkation ports. As for now, we will take note of these observations; we will use them later for a more vigorous feature selection process as we attempt to improve our model.

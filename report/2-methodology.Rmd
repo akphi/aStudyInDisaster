@@ -12,7 +12,7 @@ titanic <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Cz3wnwugHApFXO0og
 ```
 
 ## Backward Selection
-For backward selection, we start out by including all of the variables we have as explanatory variables and construct a regression model from that. We then take out one of the insignificant predictor (predictor whose p-value is greater than the significance level of 0.05), and then construct another model using the remaining variables. Repeat the process until we obtain a model with all significant predictors.
+For backward selection, we start out by including all of the variables we have as explanatory variables and construct a regression model from that. We then take out one of the insignificant predictor (predictor whose p-value is greater than the significance level of 0.05 and whose p-value is the greatest among all variables), and then construct another model using the remaining variables. Repeat the process until we obtain a model with all significant predictors.
 
 
 ## Logistic Regression
