@@ -6,5 +6,10 @@ As mentioned, the Hosmer-Lemeshow goodness-of-fit test p-value for the final mod
 
 Another the point to note is that we only have access to information of 1300/2200 passengers on the Titanic, hence our data might not have reflected the true demographics and socioeconomic settings of passengers on the ship. We are not so sure why there are many people missing. If these people are majorly male labor and third-class passengers, our findings might not been affected much. But if many of these are rich people who tried to keep their identity hidden for example or they all did not survived the shipwreck (so that we do not have any information about them), then definitely our model could not generalize well.
 
-We also consider some opportunities for further studies, which includes splitting the data set by gender and come up with models for each part of the data to see whether we can come up with models with better diagnostic results for each gender. We are considering splitting the children group (age 0-5) based on their passenger classes to see if first class children have higher rate of survival. The only problem is that the sample size might be too small and also there are a lot of missing data for age. 
+We also consider some opportunities for further studies, which includes splitting the data set by gender and come up with models for each part of the data to see whether we can come up with models with better diagnostic results for each gender. We are considering splitting the children group (age 0-5) based on their passenger classes to see if first class children have higher rate of survival. The only problem is that the sample size might be too small and also there are a lot of missing data for age.
 
+To conclude, out of curiosity, we attempt to reimagine the night of the disaster, putting ourselves in the shoes of those tragic passengers. As one-score-and-two male who are properly only rich enough to get a third-class ticket on the Titanic, we realize our inevitable fate. We will go down with the ship, as the saying goes...
+
+```{r, echo = FALSE, fig.align='center', out.width = "100%"}
+knitr::include_graphics("assets/sinking.gif")
+```
