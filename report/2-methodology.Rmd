@@ -1,12 +1,12 @@
 # Methodology {#method}
 
 ## Backward Selection
-For backward selection, we start out by including all of the variables we have as explanatory variables and construct a regression model from that. We then take out one of the insignificant predictor (predictor whose p-value is greater than the significance level of 0.05), and then construct another model using the remaining variables. Repeat the process until we obtain a model with all significant predictors.
+For backward selection, we start out by including all of the variables we have as explanatory variables and construct a regression model from that. We then take out one of the insignificant predictor (predictor whose p-value is greater than the significance level of 0.05 and whose p-value is the greatest among all variables), and then construct another model using the remaining variables. Repeat the process until we obtain a model with all significant predictors.
 
 
 ## Logistic Regression
 
-In our project, since our response varialbe is binary variable, we are going to use logistic regression for the model. Logistic regression is a type of generalized linear model. Its equation is in the form of $ln(\frac{p}{1-p})=\ln(odds)=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$, where $p$ is the probability of our outcome, and $x_1, x_2, \dots, x_n$ are explanatory variables. The right hand side of this equation is the same as a linear model, so it is called generalized linear model. The left-hand side is the natrual log of odds, where odds is a representation of probability, and it eqauls to $\frac{p}{1-p}$. Once we fit a model, we can predict the probability of success $p$ by $p = \frac{1}{1+e^{-RHS}}$, where $RHS=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$.
+In our project, since our response variable is binary variable, we are going to use logistic regression for the model. Logistic regression is a type of generalized linear model. Its equation is in the form of $ln(\frac{p}{1-p})=\ln(odds)=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$, where $p$ is the probability of our outcome, and $x_1, x_2, \dots, x_n$ are explanatory variables. The right hand side of this equation is the same as a linear model, so it is called generalized linear model. The left-hand side is the natural log of odds, where odds is a representation of probability, and it equals to $\frac{p}{1-p}$. Once we fit a model, we can predict the probability of success $p$ by $p = \frac{1}{1+e^{-RHS}}$, where $RHS=\alpha_0+\alpha_1x_1+\alpha_2x_2+\dots +\alpha_nx_n$.
 
 To perform logistic regression, we can use `glm()` function, which stands for generalized linear model, in R, and call`family = binomial(link = "logit")`.
 
@@ -20,6 +20,6 @@ To perform Homser-Lemeshow goodness-of-fit test, we can use `hoslem.test()` func
 
 ## Akaike Information Criterion (AIC)
 
-We will also use Akaike information criterion to evaluate the goodness of our model. This criterion is a method to compare several regression models together. It is a function of the goodness of fit of a model and the number of parameters it takes. It rewards goodness of fit and gives penalty to increasing number of estimated parameters. The advantage of this criterion is that it will give penalty to overfitting. However, the limitation of this method is that there is no natrual scale to compare with, so it is possible that all our models are poorly fitted, and we just chose the one that fits the best our of these poor fittings.
+We will also use Akaike information criterion to evaluate the goodness of our model. This criterion is a method to compare several regression models together. It is a function of the goodness of fit of a model and the number of parameters it takes. It rewards goodness of fit and gives penalty to increasing number of estimated parameters. The advantage of this criterion is that it will give penalty to overfitting. However, the limitation of this method is that there is no natural scale to compare with, so it is possible that all our models are poorly fitted, and we just chose the one that fits the best our of these poor fittings.
 
 This is very convenient in R. It is included in the `summary()` function and we can also call it using `AIC()` function.

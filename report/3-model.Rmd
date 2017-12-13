@@ -109,7 +109,7 @@ data.frame(as.data.frame.matrix(hl$observed), as.data.frame.matrix(hl$expected))
 As we can see from the summary, the equation of this regression model is $$ln(\hat{\frac{p}{1-\hat{p}}})= 4.46068 -2.61030 \times gendermale -2.01284 \times age[19,55] -3.08942 \times age[56, above) \\-1.70756 \times age[6,18] -2.15090\times agemissing -0.37239 \times number\_of\_siblings\_and\_spouses\\ -1.11954\times passenger\_classsecond -1.92213\times passenger\_classthird$$ Since all the coefficients are negative, the reference group is expected to be the luckiest people as is in the previous model. That is, little girls (age under 5) in first class without siblings and spouses are the most likely to survive, and their natrual log of odds is expected to be 4.46, which means that their chance of survival is approximately `r 1/(1+exp(-4.46))`. Also, the coefficients suggest how each variable affect the chance of survival. For example, males are expected to have a 2.61 lower natural log of odds than females holding other variables constant. We can also see that one more siblings or spouses is associated with 0.37 decrease natural log of odds.
 
 As for the best model of these two, we chose the latter one, the one with `gender` variable. First, we can look at the correlation between `gender` and `has_survived`. The plot is as shown below:
-```{r}
+```{r, echo=FALSE}
 gender.5<-as.data.frame(mosaic::tally(has_survived~gender, data=titanic, format="percent"))
 p6<-ggplot(gender.5, aes(x=gender, y=Freq, fill=has_survived))+
   geom_bar(stat = "identity")+
@@ -117,5 +117,7 @@ p6<-ggplot(gender.5, aes(x=gender, y=Freq, fill=has_survived))+
   #ggtitle("Age")+
   xlab("")+
   ylab("Percentage")
+p6
 ```
+
 From the graph, we can see that a majority of female survived while only a few male survived, so there is a very strong correlation between `gender` and `has_survived`. Thus, we think it makes more sense to contain `gender` variable, even if adding it will decrease the p-value of Hosmer-Lemeshow goodness-of-fit test. Also, the AIC decreases significantly after we added `gender` in the model. This suggests that adding `gender` will make our model a better fit even if we take penalty of adding new variables. Hence, the model $$ln(\hat{\frac{p}{1-\hat{p}}})= 4.46068 -2.61030 \times gendermale -2.01284 \times age[19,55] -3.08942 \times age[56, above) \\-1.70756 \times age[6,18] -2.15090\times agemissing -0.37239 \times number\_of\_siblings\_and\_spouses\\ -1.11954\times passenger\_classsecond -1.92213\times passenger\_classthird$$ is our best model.
