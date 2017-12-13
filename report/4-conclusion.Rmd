@@ -2,5 +2,7 @@
 
 ## Findings
 
+In this project, we tried different models to predict the probability of a passenger to survive during a shipwrek. Not surprising, we saw that women, children, and first class passengers are most likely to survive. It is a bit surprising that people with more siblings and spouses are less likely to survive.
+
 ## Further Study
 `r if (knitr:::is_html_output()) '# References {-}'`
