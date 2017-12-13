@@ -25,7 +25,7 @@
 <meta name="author" content="mauveSushi">
 
 
-<meta name="date" content="2017-12-11">
+<meta name="date" content="2017-12-12">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -75,17 +75,18 @@
 <li class="chapter" data-level="2" data-path="method.html"><a href="method.html"><i class="fa fa-check"></i><b>2</b> Methodology</a><ul>
 <li class="chapter" data-level="2.1" data-path="method.html"><a href="method.html#backward-selection"><i class="fa fa-check"></i><b>2.1</b> Backward Selection</a></li>
 <li class="chapter" data-level="2.2" data-path="method.html"><a href="method.html#logistic-regression"><i class="fa fa-check"></i><b>2.2</b> Logistic Regression</a></li>
-<li class="chapter" data-level="2.3" data-path="method.html"><a href="method.html#homser-lemeshow-goodness-of-fit-test"><i class="fa fa-check"></i><b>2.3</b> Homser-Lemeshow goodness-of-fit test</a></li>
+<li class="chapter" data-level="2.3" data-path="method.html"><a href="method.html#homser-lemeshow-goodness-of-fit-test"><i class="fa fa-check"></i><b>2.3</b> Homser-Lemeshow Goodness-Of-Fit Test</a></li>
 <li class="chapter" data-level="2.4" data-path="method.html"><a href="method.html#akaike-information-criterion-aic"><i class="fa fa-check"></i><b>2.4</b> Akaike Information Criterion (AIC)</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="model.html"><a href="model.html"><i class="fa fa-check"></i><b>3</b> Model</a><ul>
-<li class="chapter" data-level="3.1" data-path="model.html"><a href="model.html#model-obtained-using-backward-selection"><i class="fa fa-check"></i><b>3.1</b> Model obtained using backward selection</a></li>
+<li class="chapter" data-level="3.1" data-path="model.html"><a href="model.html#model-obtained-using-backward-selection"><i class="fa fa-check"></i><b>3.1</b> Model Obtained Using Backward Selection</a></li>
 <li class="chapter" data-level="3.2" data-path="model.html"><a href="model.html#the-final-models"><i class="fa fa-check"></i><b>3.2</b> The Final Models</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>4</b> Conclusion</a><ul>
 <li class="chapter" data-level="4.1" data-path="conclusion.html"><a href="conclusion.html#findings"><i class="fa fa-check"></i><b>4.1</b> Findings</a></li>
 <li class="chapter" data-level="4.2" data-path="conclusion.html"><a href="conclusion.html#further-study"><i class="fa fa-check"></i><b>4.2</b> Further Study</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 </ul>
 
       </nav>
@@ -304,8 +305,7 @@
 </div>
 <div id="correlation-investigation" class="section level2">
 <h2><span class="header-section-number">1.5</span> Correlation Investigation</h2>
-<p>Following, we create a plot matrix to investigate potential colinearity between variables in our data set.</p>
-<p><img src="report_files/figure-html/unnamed-chunk-6-1.png" width="1344" /></p>
+<p>Following, we create a plot matrix to investigate potential collinearity between variables in our data set.</p>
 <p>As seen above, it seems that there might be some colinearity between <code>gender</code> and <code>passenger_class</code> as female and male groups have very different first class to third class ratio. Also, notice that <code>passenger_class</code> and <code>embarked_from</code> seem to have some strong association, for example, there seems to be more third class passenger embarking from Southampton than that of other embarkation ports. As for now, we will take note of these observations; we will use them later for a more vigorous feature selection process as we attempt to improve our model.</p>
 
 </div>

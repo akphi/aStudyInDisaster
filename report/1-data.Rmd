@@ -68,9 +68,9 @@ mosaic::tally(~embarked_from, data = titanic)
 
 ## Correlation Investigation
 
-Following, we create a plot matrix to investigate potential colinearity between variables in our data set.
+Following, we create a plot matrix to investigate potential collinearity between variables in our data set.
 
-```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.width = 14, fig.height=14}
+```{r, warning=FALSE, message=FALSE, echo=FALSE, fig.width = 14, fig.height=14, eval=FALSE}
 names<-c("Has survived", "Gender", "Age", "No. of Siblings & Spouses", "No. of Parents & Children", "Passenger Class", "Fare", "Embarked From")
 titanic %>%
   select(-passenger_id) %>%
