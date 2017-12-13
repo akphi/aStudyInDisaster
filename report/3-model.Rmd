@@ -13,7 +13,7 @@ titanic <- gsheet2tbl('https://docs.google.com/spreadsheets/d/1Cz3wnwugHApFXO0og
 
 ## Model Obtained Using Backward Selection
 
-The first model we obtained is by backward selection. We eliminated `number_of_siblings_and_spouses` and `fares` before we obtained a model whose p-value of each variable is smaller than 0.05. The model we obtained and its summary are shown below:
+The first model we obtained is by backward selection. We eliminated `number_of_siblings_and_spouses` and `fares` before we obtained a model whose p-value of all variables are smaller than 0.05. The model we obtained and its summary are shown below:
 ```{r, echo=FALSE}
 m_best <- glm(has_survived ~ gender + age + number_of_siblings_and_spouses + passenger_class + embarked_from, data = titanic, family = binomial(link = "logit"))
 summary(m_best)
